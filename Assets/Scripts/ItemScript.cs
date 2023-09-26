@@ -5,14 +5,18 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     public ItemScrObj itemObject;
+    string itemName = "";
     private bool isClicked = false;
     public bool isPickedUp = false;
-    string itemName = "";
+
+    private InventoryManager_II inventoryScript;
 
     public void Start()
     {
         itemName = itemObject.itemName;
         isPickedUp = false;
+        inventoryScript = FindObjectOfType<InventoryManager_II>();
+        
     }
     public void Update()
     {
@@ -47,15 +51,12 @@ public class ItemScript : MonoBehaviour
         {
             GiveItemName(itemName);
             isPickedUp = true;
-            pickUpBool();
+            inventoryScript.InventoryBool(isPickedUp);
+            inventoryScript.AddToInventoryList(itemName);
             Destroy(gameObject);
         }
     }
-    public bool pickUpBool()
-    {
-        Debug.Log("ItemScript: " + isPickedUp);
-        return isPickedUp;
-    }
+
     public string GiveItemName(string pickUpName)
     {
         pickUpName = itemName;

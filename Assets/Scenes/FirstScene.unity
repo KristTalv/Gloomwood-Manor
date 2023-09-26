@@ -320,7 +320,6 @@ MonoBehaviour:
   itemScrObj:
   - {fileID: 11400000, guid: e529201eedf237a42a55d8e1616ea0b0, type: 2}
   - {fileID: 11400000, guid: 01949067abd189a478748baef04ea356, type: 2}
-  playerObject: {fileID: 1719879973}
   itemSlot: {fileID: 4215374604862408241, guid: 42730fe15ca81f94a88ea62da9dee81e, type: 3}
 --- !u!114 &200226362
 MonoBehaviour:

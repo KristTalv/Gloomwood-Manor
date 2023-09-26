@@ -21,6 +21,7 @@ public class InventoryManager_II : MonoBehaviour
     void Start()
     {
 
+        
         for (int i = 0; i < itemScrObj.Length; i++)
         {
             invenotryItemNames.Add(itemScrObj[i].itemName);
@@ -38,7 +39,6 @@ public class InventoryManager_II : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //Instantiate(itemSlot, this.transform);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -48,34 +48,41 @@ public class InventoryManager_II : MonoBehaviour
                 ItemScript itemScript = hit.transform.GetComponent<ItemScript>();
                 if (itemScript != null)
                 {
-
-                    //itemScript = FindObjectOfType<ItemScript>();
-                    canPutInBool = itemScript.pickUpBool();
                     pickedUpName = itemScript.GiveItemName(pickedUpName);
+                    AddToInventoryList(pickedUpName);
 
+                }
 
-                    //pickedUpNames.Add(pickedUpName);
-                    //foreach (string name in pickedUpNames)
-                    //{
-                    //    Debug.Log(name + " on pickUpNames listassa.");
-                    //}
-                }
-            }           
-            if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName))
-            {
-                Debug.Log("Invenotryn poimitut esineet: " + pickedUpName + " Bool: " + canPutInBool);
-                
-                pickedUpNames.Add(pickedUpName);
-                foreach(string name in pickedUpNames)
-                {
-                    Debug.Log("Inventoryssä: " + name);
-                }
             }
+            
         }        
     }
 
+
+    public bool InventoryBool(bool canDo)
+    {
+        canPutInBool = canDo;
+        Debug.Log("InventoryBool() " + canDo);
+        return canPutInBool;
+    }
+    public void AddToInventoryList(string pickUpName)
+    {
+        if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName))
+        {
+            pickedUpNames.Add(pickedUpName);
+            foreach (string name in pickedUpNames)
+            {
+                Debug.Log("Inventoryssä: " + name);
+            }
+            MakeInvtSlot(pickUpName);
+        }
+       
+    }
     private void MakeInvtSlot(string itemName)
     {
+        Debug.Log("Tee slotti: " + itemName);
+        Instantiate(itemSlot, this.transform);
+        canPutInBool = false;
 
     }
 
