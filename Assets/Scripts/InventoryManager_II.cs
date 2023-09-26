@@ -11,35 +11,26 @@ public class InventoryManager_II : MonoBehaviour
 
     List<string> invenotryItemNames = new List<string>(); // List of all the item names
     List<string> pickedUpNames = new List<string>(); // List of picked up items
-    List<GameObject> itemObjects = new List<GameObject>(); // List of all the item names
 
-    private string pickedUpName;
+    public string pickedUpName;
     private bool canPutInBool = false;
 
-    private ItemScript itemScript;
+    //private ItemScript itemScript;
 
     void Start()
     {
 
-        
         for (int i = 0; i < itemScrObj.Length; i++)
         {
             invenotryItemNames.Add(itemScrObj[i].itemName);
             //Debug.Log(itemScrObj[i].itemName);
         }
-        foreach(string name in invenotryItemNames)
-        {
-            itemObjects.Add(FindObjectOfType<GameObject>()); // En ole vielä varma tarvitsenko tätä listaa.
-        }
-
     }
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -50,11 +41,8 @@ public class InventoryManager_II : MonoBehaviour
                 {
                     pickedUpName = itemScript.GiveItemName(pickedUpName);
                     AddToInventoryList(pickedUpName);
-
                 }
-
-            }
-            
+            }           
         }        
     }
 

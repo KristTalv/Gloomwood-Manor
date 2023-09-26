@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4215374604862408269}
   - component: {fileID: 4215374604862408242}
   - component: {fileID: 4215374604862408243}
+  - component: {fileID: 1898469400300321524}
   m_Layer: 5
   m_Name: SlotUI
   m_TagString: Untagged
@@ -117,3 +118,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1898469400300321524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215374604862408241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9f3e4b5e5dd8843bf683640fea8b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScrObj:
+  - {fileID: 11400000, guid: e529201eedf237a42a55d8e1616ea0b0, type: 2}
+  - {fileID: 11400000, guid: 01949067abd189a478748baef04ea356, type: 2}
+  inventoryManager: {fileID: 0}
