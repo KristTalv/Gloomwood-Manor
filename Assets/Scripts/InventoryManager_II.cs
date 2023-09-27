@@ -50,7 +50,6 @@ public class InventoryManager_II : MonoBehaviour
     public bool InventoryBool(bool canDo)
     {
         canPutInBool = canDo;
-        Debug.Log("InventoryBool() " + canDo);
         return canPutInBool;
     }
     public void AddToInventoryList(string pickUpName)
