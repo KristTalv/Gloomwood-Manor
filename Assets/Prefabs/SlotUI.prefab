@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4215374604862408242}
   - component: {fileID: 4215374604862408243}
   - component: {fileID: 1898469400300321524}
+  - component: {fileID: -7915948933343285088}
   m_Layer: 5
   m_Name: SlotUI
   m_TagString: Untagged
@@ -133,4 +134,17 @@ MonoBehaviour:
   itemScrObj:
   - {fileID: 11400000, guid: e529201eedf237a42a55d8e1616ea0b0, type: 2}
   - {fileID: 11400000, guid: 01949067abd189a478748baef04ea356, type: 2}
-  inventoryManager: {fileID: 0}
+  itemDialogText: 
+--- !u!65 &-7915948933343285088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215374604862408241}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 96, y: 96, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -42,6 +42,7 @@ public class QuestObjects : MonoBehaviour
                 {
                     talkBool = true;
                 }
+                
             }
         }
 
@@ -62,9 +63,13 @@ public class QuestObjects : MonoBehaviour
 
     private void GiveDialog()
     {
-
+        if (dialogBox == true)
+        {
+            dialogBox.SetActive(false);
+        }
         if (talkBool == true)
         {
+            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogA.dialogText;
             dialogBox.SetActive(true);
         }
         if (puzzleManager.puz_button_State == "True") // checks if puzzle is done and if so, gives  new dialog

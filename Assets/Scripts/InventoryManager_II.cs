@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class InventoryManager_II : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class InventoryManager_II : MonoBehaviour
     [SerializeField] private ItemScrObj[] itemScrObj; // All the item scribtaple objects
     [Header("Slot")]
     [SerializeField] private GameObject itemSlot;
+    [Header("Dialog Box")]
+    [SerializeField] private GameObject dialogBox;
 
     List<string> invenotryItemNames = new List<string>(); // List of all the item names
     List<string> pickedUpNames = new List<string>(); // List of picked up items
@@ -42,6 +46,10 @@ public class InventoryManager_II : MonoBehaviour
                     pickedUpName = itemScript.GiveItemName(pickedUpName);
                     AddToInventoryList(pickedUpName);
                 }
+                else
+                {
+                    dialogBox.SetActive(false);
+                }
             }           
         }        
     }
@@ -70,8 +78,17 @@ public class InventoryManager_II : MonoBehaviour
         Debug.Log("Tee slotti: " + itemName);
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
-
     }
-
+    public string Listener(string message)
+    {
+        if (dialogBox == true)
+        {
+            dialogBox.SetActive(false);
+        }
+        Debug.Log("Item text: "+message);
+        dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
+        dialogBox.SetActive(true);
+        return message;
+    }
 
 }
