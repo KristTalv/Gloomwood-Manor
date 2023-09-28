@@ -18,11 +18,6 @@ public class InventoryManager_II : MonoBehaviour
     public string pickedUpName;
     private bool canPutInBool = false;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -46,7 +41,6 @@ public class InventoryManager_II : MonoBehaviour
         }        
     }
 
-
     public bool InventoryBool(bool canDo) // In item script is called to tell that the item has been collected --> true
     {
         canPutInBool = canDo;
@@ -58,17 +52,17 @@ public class InventoryManager_II : MonoBehaviour
                                                                            // --> add to list and make a slot for it the inventory
         {
             pickedUpNames.Add(pickedUpName);
-            foreach (string name in pickedUpNames)
-            {
-                Debug.Log("Inventoryssä: " + name);
-            }
+            //foreach (string name in pickedUpNames)
+            //{
+            //    Debug.Log("Inventoryssä: " + name);
+            //}
             MakeInvtSlot(pickUpName);
         }
        
     }
     private void MakeInvtSlot(string itemName) // Creates the inventory slot for the picked up item
     {
-        Debug.Log("Tee slotti: " + itemName);
+        //Debug.Log("Tee slotti: " + itemName);
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }
@@ -78,7 +72,7 @@ public class InventoryManager_II : MonoBehaviour
         {
             dialogBox.SetActive(false);
         }
-        Debug.Log("Item text: "+message);
+        //Debug.Log("Item text: "+message);
         dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
         dialogBox.SetActive(true);
         return message;

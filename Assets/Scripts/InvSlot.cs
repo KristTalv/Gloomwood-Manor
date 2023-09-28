@@ -16,9 +16,12 @@ public class InvSlot : MonoBehaviour
     public string itemDialogText;
     private int list_index;
 
+    [SerializeField] private Texture2D[] cursor;
+    private string cursorSpriteName;
+
     void Start()
     {
-
+        //Cursor.SetCursor(cursor[0], Vector3.zero, CursorMode.ForceSoftware);
         inventoryManager = FindObjectOfType<InventoryManager_II>(); // get the Inventory script
         slotItemName = inventoryManager.pickedUpName; // get the name of the picked up item from Inventory
         
@@ -33,6 +36,9 @@ public class InvSlot : MonoBehaviour
                 ItemScrObj pickedUpItem = itemScrObj[i]; // Take the correct scriptable object
                 list_index = i;
                 gameObject.GetComponent<SpriteRenderer>().sprite = pickedUpItem.inventoryIcon; // Set correct item icon
+                cursorSpriteName = pickedUpItem.inventoryIcon.name;
+                Debug.Log("cursor nema: " + cursorSpriteName);
+                //cursor = pickedUpItem.inventoryIcon;
                 itemDialogText = pickedUpItem.itemText;
                 inventoryManager.Listener(itemDialogText); // Send item dialog to Inventory witch will set it on UI
             }
@@ -41,9 +47,9 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))//Right click will inspect the item
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //getting information of mouse position related to camera
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
@@ -52,20 +58,37 @@ public class InvSlot : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
                     {
-                        //if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
-                        //{
-                        //    Debug.Log("Slotin nimi on " + slotItemName);
-                        //}
-
-                        // T‰‰ ei p‰ivity vikan esineen j‰lkeen. Eli kun ei en‰‰n instansioida uutta Inventory Slottia..
                         inventoryManager.Listener("It's a " + slotItemName);
                     }
                 }
-
             }
-
         }
-
+        if (Input.GetKeyDown(KeyCode.Mouse0)) // Left click will use the item
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                InvSlot invSlot = hit.transform.GetComponent<InvSlot>();
+                if (invSlot != null)
+                {
+                    if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
+                    {
+                        for(int i = 0; i < cursor.Length; i++)
+                        {
+                            if(cursor[i].name == cursorSpriteName)
+                            {
+                                Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Cursor.SetCursor(null, Vector3.zero, CursorMode.ForceSoftware);
+                }
+            }
+        }
 
 
     }

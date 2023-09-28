@@ -134,7 +134,11 @@ MonoBehaviour:
   itemScrObj:
   - {fileID: 11400000, guid: e529201eedf237a42a55d8e1616ea0b0, type: 2}
   - {fileID: 11400000, guid: 01949067abd189a478748baef04ea356, type: 2}
+  slotItemName: 
   itemDialogText: 
+  cursor:
+  - {fileID: 2800000, guid: 0584e6fcddf6d214ca07ef0341bfd613, type: 3}
+  - {fileID: 2800000, guid: f7a88970ee404a445b77fb49bcc1f144, type: 3}
 --- !u!65 &-7915948933343285088
 BoxCollider:
   m_ObjectHideFlags: 0
