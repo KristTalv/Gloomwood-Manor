@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveClick;
 
 
+    private void Start()
+    {
+        firsttime = 0;
+    }
     void Update()
     {
         heroLocation = gameObject.transform.position.x;
@@ -32,17 +36,21 @@ public class PlayerController : MonoBehaviour
 
     private void GetDecPoint()
     {
-        firsttime = +1; //Caunt that player has done an action
+        // Raycast to check what the mouse click hit
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
-            moveClick = hit.point;
-            moveClick.z = transform.position.z;
-            moveClick.y = transform.position.y;
-            heroDestination = hit.point.x; // player moves only on x
-
+            //Debug.Log(hit.transform.tag);
+            if (hit.transform.tag != "UISlot" && hit.transform.tag != "UI")
+            {
+                firsttime++; // Increment the action count
+                moveClick = hit.point;
+                moveClick.z = transform.position.z;
+                moveClick.y = transform.position.y;
+                heroDestination = hit.point.x; // Player moves only on the x-axis
+            }
         }
     }
 

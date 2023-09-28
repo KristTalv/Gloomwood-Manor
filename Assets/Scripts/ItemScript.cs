@@ -39,10 +39,8 @@ public class ItemScript : MonoBehaviour
                 {
                     isClicked = false;
                 }
-            }
-            
-        }
-        
+            } 
+        }      
     }
 
     private void OnTriggerEnter(Collider other)

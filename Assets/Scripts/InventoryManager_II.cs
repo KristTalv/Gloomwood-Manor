@@ -13,22 +13,14 @@ public class InventoryManager_II : MonoBehaviour
     [Header("Dialog Box")]
     [SerializeField] private GameObject dialogBox;
 
-    List<string> invenotryItemNames = new List<string>(); // List of all the item names
     List<string> pickedUpNames = new List<string>(); // List of picked up items
 
     public string pickedUpName;
     private bool canPutInBool = false;
 
-    //private ItemScript itemScript;
-
     void Start()
     {
 
-        for (int i = 0; i < itemScrObj.Length; i++)
-        {
-            invenotryItemNames.Add(itemScrObj[i].itemName);
-            //Debug.Log(itemScrObj[i].itemName);
-        }
     }
 
     void Update()
@@ -55,14 +47,15 @@ public class InventoryManager_II : MonoBehaviour
     }
 
 
-    public bool InventoryBool(bool canDo)
+    public bool InventoryBool(bool canDo) // In item script is called to tell that the item has been collected --> true
     {
         canPutInBool = canDo;
         return canPutInBool;
     }
-    public void AddToInventoryList(string pickUpName)
+    public void AddToInventoryList(string pickUpName) 
     {
-        if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName))
+        if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName)) // item script has tells that item has been picked up and the item name is not inthe list
+                                                                           // --> add to list and make a slot for it the inventory
         {
             pickedUpNames.Add(pickedUpName);
             foreach (string name in pickedUpNames)
@@ -73,13 +66,13 @@ public class InventoryManager_II : MonoBehaviour
         }
        
     }
-    private void MakeInvtSlot(string itemName)
+    private void MakeInvtSlot(string itemName) // Creates the inventory slot for the picked up item
     {
         Debug.Log("Tee slotti: " + itemName);
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }
-    public string Listener(string message)
+    public string Listener(string message) // This is called from inventory slot prefab --> inventory makes item dialog visible
     {
         if (dialogBox == true)
         {

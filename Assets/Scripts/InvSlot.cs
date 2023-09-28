@@ -12,8 +12,9 @@ public class InvSlot : MonoBehaviour
     private InventoryManager_II inventoryManager; // Inventory script
 
     List<string> invenotryItemNames = new List<string>(); // List of all the item names
-    private string slotItemName = "";
-    public string itemDialogText; 
+    [SerializeField] private string slotItemName = "";
+    public string itemDialogText;
+    private int list_index;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class InvSlot : MonoBehaviour
             if(invenotryItemNames[i].Contains(slotItemName))
             {
                 ItemScrObj pickedUpItem = itemScrObj[i]; // Take the correct scriptable object
+                list_index = i;
                 gameObject.GetComponent<SpriteRenderer>().sprite = pickedUpItem.inventoryIcon; // Set correct item icon
                 itemDialogText = pickedUpItem.itemText;
                 inventoryManager.Listener(itemDialogText); // Send item dialog to Inventory witch will set it on UI
@@ -39,7 +41,33 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //getting information of mouse position related to camera
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                InvSlot invSlot = hit.transform.GetComponent<InvSlot>();
+                if (invSlot != null)
+                {
+                    if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
+                    {
+                        //if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
+                        //{
+                        //    Debug.Log("Slotin nimi on " + slotItemName);
+                        //}
+
+                        // T‰‰ ei p‰ivity vikan esineen j‰lkeen. Eli kun ei en‰‰n instansioida uutta Inventory Slottia..
+                        inventoryManager.Listener("It's a " + slotItemName);
+                    }
+                }
+
+            }
+
+        }
+
 
 
     }
+
 }

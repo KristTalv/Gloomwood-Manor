@@ -54,16 +54,13 @@ public class QuestObjects : MonoBehaviour
     private void OnTriggerExit(Collider other) // exiting makes dialog box unvisable and sets questBoolean to false --> re-enttering trigger area wont make 
                                                // dialog box visable
     {
-
         dialogBox.SetActive(false);
         talkBool = false;
-
     }
-
 
     private void GiveDialog()
     {
-        if (dialogBox == true)
+        if (dialogBox == true && talkBool == true)
         {
             dialogBox.SetActive(false);
         }

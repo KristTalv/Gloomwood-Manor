@@ -279,9 +279,10 @@ GameObject:
   - component: {fileID: 200226363}
   - component: {fileID: 200226362}
   - component: {fileID: 200226361}
+  - component: {fileID: 200226365}
   m_Layer: 5
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,7 +299,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 924394328}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -385,6 +386,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200226359}
   m_CullTransparentMesh: 1
+--- !u!65 &200226365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200226359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1938, y: 103.04, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &286245668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 286245669}
+  - component: {fileID: 286245672}
+  - component: {fileID: 286245670}
+  m_Layer: 5
+  m_Name: InventoryArea
+  m_TagString: UI
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &286245669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286245668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 924394328}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 48.5}
+  m_SizeDelta: {x: 1938, y: 96}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!65 &286245670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286245668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1938, y: 103.04, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!222 &286245672
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286245668}
+  m_CullTransparentMesh: 1
 --- !u!1 &581875229
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,9 +468,10 @@ GameObject:
   - component: {fileID: 581875230}
   - component: {fileID: 581875232}
   - component: {fileID: 581875231}
+  - component: {fileID: 581875233}
   m_Layer: 5
   m_Name: TopHud
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,6 +533,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581875229}
   m_CullTransparentMesh: 1
+--- !u!65 &581875233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581875229}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1938, y: 103.04, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &650069534
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +685,7 @@ GameObject:
   - component: {fileID: 746905624}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,6 +859,7 @@ RectTransform:
   m_Children:
   - {fileID: 581875230}
   - {fileID: 2114387918}
+  - {fileID: 286245669}
   - {fileID: 200226360}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1230,7 +1317,7 @@ GameObject:
   - component: {fileID: 1813672244}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1433,10 +1520,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogBox
       objectReference: {fileID: 0}
-    - target: {fileID: 2749408430578298088, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2749408430578298091, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1519,10 +1602,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749408430578298091, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2749408430578298101, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
-      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
