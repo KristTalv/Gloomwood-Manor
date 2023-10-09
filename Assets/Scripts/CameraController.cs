@@ -39,14 +39,7 @@ public class CameraController : MonoBehaviour
         cameraGameOjects.Add(entransePoints);
         cameraGameOjects.Add(centralPoints);
         cameraGameOjects.Add(exitPoints);
-
-        // Un comment below if want to see camera positions in the list
-        //foreach (Vector3 item in cameraPositions)
-        //{
-        //    Debug.Log("Kamera koordinaatit: " + item.x + "x " + item.y + "y " + item.z + "z ");
-        //}
     }
-
 
     void Update()
     {
@@ -63,39 +56,32 @@ public class CameraController : MonoBehaviour
         {
             callCaunter++;
             cam_I--;
-            Debug.Log(cam_I);
-
         }
         if (wallName == "Collision_A" && cam_I == 0 && callCaunter == 0)
         {
             callCaunter++;
             cam_I++;
-            Debug.Log(cam_I);
         }
         if (wallName == "Collision_B" && cam_I == 1 && callCaunter == 0)
         {
             callCaunter++;
             cam_I++;
-            Debug.Log(cam_I);
-
         }
         if (wallName == "Collision_B" && cam_I == 2 && callCaunter == 0)
         {
             callCaunter++;
             cam_I--;
-            Debug.Log(cam_I);
-
         }
         targetPosition = cameraPositions[cam_I];
         Quaternion targetRotation = Quaternion.LookRotation(cameraGameOjects[cam_I].transform.forward, Vector3.up);
 
-        // Siirr‰ kameraa EntrancePointiin
+        // Move Camera
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-        // K‰‰nny kohti EntrancePointia
+        // Rotate Camera
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 
-        // Jos kamera on l‰hell‰ EntrancePointia, pys‰yt‰ liike
+        // Stop Camera
         if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             callCaunter = 0;

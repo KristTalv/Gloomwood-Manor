@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_II : MonoBehaviour
 {
 
     public float speedWalk = 1.0f; // movment speed
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private float heroLocation; // movement positions
     private float heroDestination;
-    
+
     private int firsttime = 0; //counter
 
     public GameObject[] walkPathPoint; // waypoint Game Objects --> List willbe made out of them
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
         cameraController = FindObjectOfType<CameraController>(); // CameraController script is now available
 
-        foreach(GameObject item in walkPathPoint) // wayPoint List is made in the loop.
+        foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
         {
             wayPoints.Add(item.transform.position);
         }
@@ -40,28 +40,6 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        //GetYPosition(0);
-
-
-        //Vector3 raycastStart = transform.position + Vector3.down * (transform.localScale.y / 2f); // the bottom of the game object
-        //Vector3 raycastDirection = -Vector3.up; // Shoot raycast down
-        //float rayLimit = 7f; // lenght of the ray
-        //
-        //RaycastHit hit;
-        //if (Physics.Raycast(raycastStart, raycastDirection, out hit, rayLimit))
-        //{
-        //    if (hit.transform.tag == "Level")
-        //    {
-        //        float yDeltta = raycastStart.y - hit.point.y;
-        //        float yTarget = 0.1f;
-        //        yMovement = yTarget - yDeltta;
-        //        float yPos = hit.point.y + yDeltta;
-        //        
-        //        Debug.Log("Hahmo siirtyy yksikköä y akselilla: " + yPos);
-        //        //hightLimit = hightLimit + yMovement;
-        //    }
-        //
-        //}
 
         heroLocation = gameObject.transform.position.x;
 
@@ -92,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 float rayStart = raycastStart.y;
                 //Debug.Log("Pelaajan puolikasmitta: " + playerPivot);
                 Debug.Log("RayStart: " + rayStart);
-                Debug.Log("Lattia eli y2: "+ y2);
+                Debug.Log("Lattia eli y2: " + y2);
                 float yDeltta = rayStart - y2;
                 Debug.Log("yDEltta: " + yDeltta);
                 Debug.Log("ySeam: " + ySeam);
@@ -124,7 +102,7 @@ public class PlayerController : MonoBehaviour
             {
                 firsttime++; // Increment the action count
                 moveClick = hit.point;
-                //moveClick.y = transform.position.y;
+                moveClick.y = transform.position.y;
                 //moveClick.z = transform.position.z;
 
 
@@ -132,9 +110,9 @@ public class PlayerController : MonoBehaviour
                 float smallestResult = 100000000;
                 int wayPointIndex = 0;
 
-                for(int i = 0; i < wayPoints.Count; i ++)
+                for (int i = 0; i < wayPoints.Count; i++)
                 {
-                    if(i > 0)
+                    if (i >= 0)
                     {
                         float resutl = wayPoints[i].x - hit.point.x;
                         if (Mathf.Abs(resutl) < smallestResult)
@@ -148,10 +126,7 @@ public class PlayerController : MonoBehaviour
 
                 heroDestination = walkPathPoint[wayPointIndex].transform.position.x;
                 moveClick.z = walkPathPoint[wayPointIndex].transform.position.z;
-                GetYPosition();
-                Debug.Log(yPos);
-                moveClick.y = yPos;
-                
+
                 moveClick.x = heroDestination;
             }
         }
@@ -166,7 +141,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "TriggerCam")
+        if (other.tag == "TriggerCam")
         {
             cameraController.wallName = other.gameObject.name;
             cameraController.camMoveBool = true;
