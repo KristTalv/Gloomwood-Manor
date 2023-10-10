@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InventoryManager_II : MonoBehaviour
 {
+    [Header("Begin items")]
+    [SerializeField] private ItemScrObj[] begingItemScrObj;
     [Header("Items")]
     [SerializeField] private ItemScrObj[] itemScrObj; // All the item scribtaple objects
     [Header("Slot")]
@@ -17,6 +19,28 @@ public class InventoryManager_II : MonoBehaviour
 
     public string pickedUpName;
     private bool canPutInBool = false;
+    public int itemCount;
+
+    private void Start()
+    {
+        for (int i = 0; i < begingItemScrObj.Length; i ++)
+        {
+            pickedUpName = begingItemScrObj[i].itemName;
+            pickedUpNames.Add(pickedUpName);
+            Debug.Log(pickedUpName);
+        }
+        StartCoroutine(BegingItemScrObj());
+        itemCount = pickedUpNames.Count;
+    }
+    IEnumerator BegingItemScrObj()
+    {
+        for (int i = 0; i < pickedUpNames.Count; i++)
+        {
+            pickedUpName = pickedUpNames[i];
+            Instantiate(itemSlot, this.transform);
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
 
     void Update()
     {
@@ -37,8 +61,8 @@ public class InventoryManager_II : MonoBehaviour
                 {
                     dialogBox.SetActive(false);
                 }
-            }           
-        }        
+            }
+        }
     }
 
     public bool InventoryBool(bool canDo) // In item script is called to tell that the item has been collected --> true
@@ -46,23 +70,19 @@ public class InventoryManager_II : MonoBehaviour
         canPutInBool = canDo;
         return canPutInBool;
     }
-    public void AddToInventoryList(string pickUpName) 
+    public void AddToInventoryList(string pickUpName)
     {
         if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName)) // item script has tells that item has been picked up and the item name is not inthe list
                                                                            // --> add to list and make a slot for it the inventory
         {
+            itemCount++;
             pickedUpNames.Add(pickedUpName);
-            //foreach (string name in pickedUpNames)
-            //{
-            //    Debug.Log("Inventoryssä: " + name);
-            //}
             MakeInvtSlot(pickUpName);
         }
-       
+
     }
     private void MakeInvtSlot(string itemName) // Creates the inventory slot for the picked up item
     {
-        //Debug.Log("Tee slotti: " + itemName);
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }

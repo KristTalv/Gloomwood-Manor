@@ -16,15 +16,15 @@ public class ItemScript : MonoBehaviour
         itemName = itemObject.itemName;
         isPickedUp = false;
         inventoryScript = FindObjectOfType<InventoryManager_II>();
-        
+
     }
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 //Chack if hitted object has itemscript --> is an item
                 ItemScript itemScript = hit.transform.GetComponent<ItemScript>();
@@ -39,13 +39,13 @@ public class ItemScript : MonoBehaviour
                 {
                     isClicked = false;
                 }
-            } 
-        }      
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.transform.tag == "Player" && isClicked == true)
+        if (other.gameObject.transform.tag == "Player" && isClicked == true)
         {
             GiveItemName(itemName);
             isPickedUp = true;
@@ -58,7 +58,7 @@ public class ItemScript : MonoBehaviour
     public string GiveItemName(string pickUpName)
     {
         pickUpName = itemName;
-        return pickUpName;       
+        return pickUpName;
     }
 
 }

@@ -27,9 +27,6 @@ public class PlayerController_II : MonoBehaviour
 
     private void Start()
     {
-        GetYPosition();
-        gameObject.transform.Translate(gameObject.transform.position.x, yPos, transform.position.z * speedWalk * Time.deltaTime);
-
         cameraController = FindObjectOfType<CameraController>(); // CameraController script is now available
 
         foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
@@ -53,43 +50,6 @@ public class PlayerController_II : MonoBehaviour
             WalkingOn();
         }
     }
-
-    private float GetYPosition()
-    {
-        Vector3 raycastStart = transform.position + Vector3.down * (transform.localScale.y / 2f); // the bottom of the game object
-        Vector3 raycastDirection = -Vector3.up; // Shoot raycast down
-        float rayLimit = 7f; // lenght of the ray
-
-        RaycastHit hit;
-        if (Physics.Raycast(raycastStart, raycastDirection, out hit, rayLimit))
-        {
-            if (hit.transform.tag == "Level")
-            {
-                //float playerPivot = transform.localScale.y / 2f;
-                float y2 = hit.point.y; // Floor location in y
-                float rayStart = raycastStart.y;
-                //Debug.Log("Pelaajan puolikasmitta: " + playerPivot);
-                Debug.Log("RayStart: " + rayStart);
-                Debug.Log("Lattia eli y2: " + y2);
-                float yDeltta = rayStart - y2;
-                Debug.Log("yDEltta: " + yDeltta);
-                Debug.Log("ySeam: " + ySeam);
-                //float yTarget = ySeam + playerPivot;
-                //Debug.Log("yTarget: " + yTarget);
-                yMovement = yDeltta - ySeam;
-                Debug.Log("yMovement: " + yMovement);
-                Debug.Log("y1: " + transform.position.y);
-                yPos = transform.position.y - yMovement;
-                //yPos = hit.point.y + yDeltta;
-
-                Debug.Log("Hahmon uusi siainti y koordinaatilla: " + yPos);
-                //hightLimit = hightLimit + yMovement;
-            }
-
-        }
-        return yPos;
-    }
-
     private void GetDecPoint()
     {
         // Raycast to check what the mouse click hit

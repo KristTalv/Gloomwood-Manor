@@ -11,6 +11,7 @@ public class ItemScrObj : ScriptableObject
     [SerializeField, TextArea]
     public string itemText;
     public Sprite inventoryIcon;
+    public Texture2D cursorSprite;
     public string pairObject;
 
     

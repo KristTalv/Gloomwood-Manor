@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         PlayerController playerController = FindObjectOfType<PlayerController>(); // Camera needs information of player movements
+        //Debug.Log(cam_I);
 
         entranseVector = entransePoints.transform.position;
         centralVector = centralPoints.transform.position;
@@ -52,15 +53,20 @@ public class CameraController : MonoBehaviour
     public void MoveCamera()
     {
         Vector3 targetPosition;
-        if (wallName == "Collision_A" && cam_I == 1 && callCaunter == 0)
-        {
-            callCaunter++;
-            cam_I--;
-        }
         if (wallName == "Collision_A" && cam_I == 0 && callCaunter == 0)
         {
             callCaunter++;
             cam_I++;
+            //Debug.Log(callCaunter);
+            //Debug.Log(cam_I);
+        }
+        if (wallName == "Collision_A" && cam_I == 1 && callCaunter == 0)
+        {
+
+            callCaunter++;
+            cam_I--;
+            //Debug.Log(callCaunter);
+            //Debug.Log(cam_I);
         }
         if (wallName == "Collision_B" && cam_I == 1 && callCaunter == 0)
         {

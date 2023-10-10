@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 459440d5bb9063146b3ab1e1063d97a9, type: 3}
-  m_Name: Candle
+  m_Name: Pentagram
   m_EditorClassIdentifier: 
-  itemName: Candle
-  itemText: Light!
-  inventoryIcon: {fileID: 21300000, guid: 0584e6fcddf6d214ca07ef0341bfd613, type: 3}
-  cursorSprite: {fileID: 2800000, guid: 7fabc63391d55464ab57ed6b876a24f3, type: 3}
+  itemName: Pentagram
+  itemText: Unholy symbol, i feel odd
+  inventoryIcon: {fileID: 21300000, guid: f7a88970ee404a445b77fb49bcc1f144, type: 3}
+  cursorSprite: {fileID: 2800000, guid: 1bde4bccd676e2948b2e936fe5ed0122, type: 3}
   pairObject: None

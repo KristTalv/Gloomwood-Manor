@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    private Puz_Button puz_Button; // For getting puzzles status
+    // Puzzle manager is for communicating and remembering all puzzle statuses
+
+    private Puz_Button puz_Button; // tessting the manager
     public string puz_button_State = "--";
+
+    private Puz_LetLight puzz_LetLight;
+    public string puz_LetLight_Status = "--";
 
 
 
