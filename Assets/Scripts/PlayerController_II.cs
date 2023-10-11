@@ -24,9 +24,13 @@ public class PlayerController_II : MonoBehaviour
 
 
     public CameraController cameraController; // CameraController script. Camera needs to know when player pass trhoug collision --> camMoveBool = true
+    private PuzzleManager puzzleManager;
+
+    public string status_LetLight;
 
     private void Start()
     {
+        puzzleManager = FindObjectOfType<PuzzleManager>();
         cameraController = FindObjectOfType<CameraController>(); // CameraController script is now available
 
         foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
@@ -42,6 +46,7 @@ public class PlayerController_II : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            status_LetLight = puzzleManager.puz_LetLight_Status;
             GetDecPoint();
         }
 
@@ -63,14 +68,12 @@ public class PlayerController_II : MonoBehaviour
                 firsttime++; // Increment the action count
                 moveClick = hit.point;
                 moveClick.y = transform.position.y;
-                //moveClick.z = transform.position.z;
 
-
-                //heroDestination = hit.point.x; // Player moves only on the x-axis
                 float smallestResult = 100000000;
                 int wayPointIndex = 0;
 
-                for (int i = 0; i < wayPoints.Count; i++)
+                for (int i = 0; i < wayPoints.Count; i++) // Calculate the closest way point from mouseclick position
+                                                          // --> that point becomes destination heroDestination
                 {
                     if (i >= 0)
                     {
@@ -80,8 +83,12 @@ public class PlayerController_II : MonoBehaviour
                             smallestResult = resutl;
                             wayPointIndex = i;
                         }
+                        if (wayPointIndex > 3 && status_LetLight == "Violet")
+                        {
+                            wayPointIndex = 3;
+                            Debug.Log("It's too dark in there");
+                        }
                     }
-
                 }
 
                 heroDestination = walkPathPoint[wayPointIndex].transform.position.x;

@@ -17,7 +17,7 @@ public class InvSlot : MonoBehaviour
     private int list_index;
 
     [SerializeField] private Texture2D[] cursor;
-    private string cursorSpriteName;
+    public string cursorSpriteName;
 
     void Start()
     {

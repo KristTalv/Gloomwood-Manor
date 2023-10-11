@@ -13,16 +13,22 @@ public class PuzzleManager : MonoBehaviour
     private Puz_LetLight puzz_LetLight;
     public string puz_LetLight_Status = "--";
 
-
+    private void Start()
+    {
+        puz_Button = FindObjectOfType<Puz_Button>();
+        puzz_LetLight = FindObjectOfType<Puz_LetLight>();
+        puz_LetLight_Status = puzz_LetLight.statusLight;
+    }
 
     void Update()
     {
-        puz_Button = FindObjectOfType<Puz_Button>();
-        string is_it_done = puz_Button.questDone.ToString();
-        GivePuzzleState(is_it_done);
+
+        string is_it_done = puz_Button.questDone.ToString(); // delete this when you dont need reference anymore
+        GivePuzzleState(is_it_done); // delete this when you dont need reference anymore
+
     }
     
-    public string GivePuzzleState(string state)
+    public string GivePuzzleState(string state) // delete this when you dont need reference anymore
     {
         puz_button_State = state;
         return state;

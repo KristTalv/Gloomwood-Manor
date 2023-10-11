@@ -27,7 +27,6 @@ public class InventoryManager_II : MonoBehaviour
         {
             pickedUpName = begingItemScrObj[i].itemName;
             pickedUpNames.Add(pickedUpName);
-            Debug.Log(pickedUpName);
         }
         StartCoroutine(BegingItemScrObj());
         itemCount = pickedUpNames.Count;
