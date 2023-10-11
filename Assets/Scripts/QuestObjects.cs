@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class QuestObjects : MonoBehaviour
 {
@@ -11,18 +12,22 @@ public class QuestObjects : MonoBehaviour
     private bool talkBool = false;
 
     // dialog options
-    public QuestDialogScrObj dialogA;
-    public QuestDialogScrObj dialogB;
+    [SerializeField] private QuestDialogScrObj doorStuck1;
+    [SerializeField] private QuestDialogScrObj doorStuck2;
+    [SerializeField] private QuestDialogScrObj doorStuck3;
 
     //scripts
     private PuzzleManager puzzleManager;
 
+    private string clickedObjName;
+
+    private int cauntStartDoor = 0;
+
 
     private void Start()
     {
+        cauntStartDoor = 0;
         dialogBox.SetActive(false); // Dioalog box is not visable
-        dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogA.dialogText;
-
         puzzleManager = FindObjectOfType<PuzzleManager>(); // Puzzle manager is awailable now
 
     }
@@ -37,10 +42,15 @@ public class QuestObjects : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.tag == "quest") // if user clkicks a "quest" object, questBoolean is true 
-                                                             // --> OnTrigger if() condition is true --> Dialog box is visable for user
+                if (hit.transform.gameObject.tag == "quest") // if user clkicks a "quest" object, questBoolean is true
                 {
+                    clickedObjName = hit.transform.name;
                     talkBool = true;
+
+                }
+                else
+                {
+                    talkBool = false;
                 }
                 
             }
@@ -64,14 +74,29 @@ public class QuestObjects : MonoBehaviour
         {
             dialogBox.SetActive(false);
         }
+
+        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 0)
+        {
+            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck1.dialogText;
+        }
+        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 1)
+        {
+            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck2.dialogText;
+        }
+        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor >= 2)
+        {
+            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck3.dialogText;
+        }
         if (talkBool == true)
         {
-            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogA.dialogText;
             dialogBox.SetActive(true);
+            UpDateCaunt();
         }
-        if (puzzleManager.puz_button_State == "True") // checks if puzzle is done and if so, gives  new dialog
-        {
-            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogB.dialogText;
-        }
+        
+    }
+
+    private void UpDateCaunt()
+    {
+        cauntStartDoor++;
     }
 }

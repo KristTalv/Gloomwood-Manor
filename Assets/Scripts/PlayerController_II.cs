@@ -23,13 +23,16 @@ public class PlayerController_II : MonoBehaviour
     List<Vector3> wayPoints = new List<Vector3>(); // List of way points witch player  walk on
 
 
+    // Scripts
     public CameraController cameraController; // CameraController script. Camera needs to know when player pass trhoug collision --> camMoveBool = true
     private PuzzleManager puzzleManager;
+    private InventoryManager_II inventoryManager_II;
 
     public string status_LetLight;
 
     private void Start()
     {
+        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
         cameraController = FindObjectOfType<CameraController>(); // CameraController script is now available
 
@@ -86,7 +89,9 @@ public class PlayerController_II : MonoBehaviour
                         if (wayPointIndex > 3 && status_LetLight == "Violet")
                         {
                             wayPointIndex = 3;
-                            Debug.Log("It's too dark in there");
+                            string message = "It's too dark in there";
+                            inventoryManager_II.Listener(message);
+                            //Debug.Log("It's too dark in there");
                         }
                     }
                 }

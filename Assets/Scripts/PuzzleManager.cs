@@ -23,14 +23,14 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
 
-        string is_it_done = puz_Button.questDone.ToString(); // delete this when you dont need reference anymore
-        GivePuzzleState(is_it_done); // delete this when you dont need reference anymore
+        //string is_it_done = puz_Button.questDone.ToString(); // delete this when you dont need reference anymore
+        //GivePuzzleState(is_it_done); // delete this when you dont need reference anymore
 
     }
     
-    public string GivePuzzleState(string state) // delete this when you dont need reference anymore
-    {
-        puz_button_State = state;
-        return state;
-    }
+    //public string GivePuzzleState(string state) // delete this when you dont need reference anymore
+    //{
+    //    puz_button_State = state;
+    //    return state;
+    //}
 }

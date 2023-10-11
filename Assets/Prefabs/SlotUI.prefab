@@ -137,6 +137,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01949067abd189a478748baef04ea356, type: 2}
   - {fileID: 11400000, guid: d8cbdbc37fae1a644aa28ba693ca1eb6, type: 2}
   - {fileID: 11400000, guid: 7f0f398b8e1f343499ebfa7e543cd553, type: 2}
+  - {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
   slotItemName: 
   itemDialogText: 
   cursor:
@@ -145,6 +146,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 62c992cfa886fdf4c9cb7543f60f813b, type: 3}
   - {fileID: 2800000, guid: 1bde4bccd676e2948b2e936fe5ed0122, type: 3}
   - {fileID: 2800000, guid: 7fabc63391d55464ab57ed6b876a24f3, type: 3}
+  - {fileID: 2800000, guid: 9aa13e5faa70e274b9ad6182b199d21b, type: 3}
+  cursorSpriteName: 
+  useItemName: 
 --- !u!65 &-7915948933343285088
 BoxCollider:
   m_ObjectHideFlags: 0

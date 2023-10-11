@@ -18,6 +18,7 @@ public class InvSlot : MonoBehaviour
 
     [SerializeField] private Texture2D[] cursor;
     public string cursorSpriteName;
+    public string useItemName;
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))//Right click will inspect the item
+        if (Input.GetMouseButton(1))//Right click will inspect the item
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -68,7 +69,7 @@ public class InvSlot : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0)) // Left click will use the item
+        if (Input.GetMouseButtonDown(0)) // Left click will use the item
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -81,6 +82,7 @@ public class InvSlot : MonoBehaviour
                     {
                         for (int i = 0; i < cursor.Length; i++)
                         {
+                            useItemName = cursorSpriteName;
                             if (cursor[i].name == cursorSpriteName)
                             {
                                 Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
@@ -90,6 +92,7 @@ public class InvSlot : MonoBehaviour
                 }
                 else
                 {
+                    useItemName = "";
                     Cursor.SetCursor(null, Vector3.zero, CursorMode.ForceSoftware);
                 }
             }

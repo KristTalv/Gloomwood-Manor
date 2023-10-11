@@ -10,12 +10,14 @@ public class ItemScript : MonoBehaviour
     public bool isPickedUp = false;
 
     private InventoryManager_II inventoryScript;
+    private Puz_Sigil puzz_Sigil;
 
     public void Start()
     {
         itemName = itemObject.itemName;
         isPickedUp = false;
         inventoryScript = FindObjectOfType<InventoryManager_II>();
+        puzz_Sigil = FindObjectOfType<Puz_Sigil>();
 
     }
     public void Update()
@@ -32,7 +34,22 @@ public class ItemScript : MonoBehaviour
                 {
                     if (itemScript.itemName == itemName)
                     {
-                        isClicked = true;
+                        if(hit.transform.name == "Sir_Edward's_grave")
+                        {
+                            string status = puzz_Sigil.statusSigil;
+                            if(status == "Violet")
+                            {
+                                isClicked = false;
+                                string message = "A dusty grave.";
+                                inventoryScript.Listener(message);
+                            }
+
+                        }
+                        else
+                        {
+                            isClicked = true;
+                        }
+                        
                     }
                 }
                 else
