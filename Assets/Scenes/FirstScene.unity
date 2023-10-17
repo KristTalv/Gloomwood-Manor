@@ -249,6 +249,7 @@ Transform:
   - {fileID: 2066124329}
   - {fileID: 1865992672}
   - {fileID: 758093920}
+  - {fileID: 404926846}
   - {fileID: 1123578143}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1206,8 +1207,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 404926846}
+  m_Children: []
   m_Father: {fileID: 1043472773}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1540,9 +1540,10 @@ GameObject:
   - component: {fileID: 404926849}
   - component: {fileID: 404926848}
   - component: {fileID: 404926847}
+  - component: {fileID: 404926850}
   m_Layer: 0
-  m_Name: Coffing
-  m_TagString: Untagged
+  m_Name: Q_Sword & KnightGrave
+  m_TagString: Puzzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,14 +1555,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404926845}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.96, z: -1.2}
   m_LocalScale: {x: 3.27, y: 2, z: 1}
   m_Children:
   - {fileID: 508892722}
   - {fileID: 770757164}
-  m_Father: {fileID: 315952333}
-  m_RootOrder: 0
+  m_Father: {fileID: 8271107}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &404926847
 BoxCollider:
@@ -1571,11 +1572,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404926845}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 2.8888993}
+  m_Center: {x: 0, y: 0, z: -0.94444966}
 --- !u!23 &404926848
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1625,6 +1626,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404926845}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &404926850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404926845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933628b02b186ed46b3e1eb5deb154f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusSword: 
+  diaPuzzSword: {fileID: 11400000, guid: d2be4b998b6bb5347bf49a2d802cde41, type: 2}
 --- !u!1 &430659047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,9 +1907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8fc91635b3a204db41c41893290ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedWalk: 10
   hightLimit: 0
   ySeam: 0.37
+  speedWalk: 10
   walkPathPoint:
   - {fileID: 17398751}
   - {fileID: 155484622}
@@ -1998,7 +2013,6 @@ GameObject:
   - component: {fileID: 508892722}
   - component: {fileID: 508892725}
   - component: {fileID: 508892724}
-  - component: {fileID: 508892723}
   m_Layer: 0
   m_Name: Coffing (1)
   m_TagString: Untagged
@@ -2020,19 +2034,6 @@ Transform:
   m_Father: {fileID: 404926846}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &508892723
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508892721}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &508892724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3018,6 +3019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758093920}
   - component: {fileID: 758093921}
+  - component: {fileID: 758093922}
   m_Layer: 0
   m_Name: Q_Sigil
   m_TagString: Untagged
@@ -3053,6 +3055,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusSigil: 
   diaPuzzSigil: 
+  itemScrObj: {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
+--- !u!65 &758093922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758093919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5976539, y: 2.984425, z: 4.420725}
+  m_Center: {x: -5.6220884, y: -0.9922135, z: -1.7103629}
 --- !u!1 &764441893
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3110,6 @@ GameObject:
   - component: {fileID: 770757164}
   - component: {fileID: 770757167}
   - component: {fileID: 770757166}
-  - component: {fileID: 770757165}
   m_Layer: 0
   m_Name: Coffing (2)
   m_TagString: Untagged
@@ -3116,19 +3131,6 @@ Transform:
   m_Father: {fileID: 404926846}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &770757165
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770757163}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &770757166
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3525,6 +3527,7 @@ RectTransform:
   - {fileID: 2114387918}
   - {fileID: 286245669}
   - {fileID: 200226360}
+  - {fileID: 1566210655}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4421,7 +4424,7 @@ Transform:
   - {fileID: 555602011}
   - {fileID: 1281729557}
   m_Father: {fileID: 8271107}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137234072
 GameObject:
@@ -5031,6 +5034,55 @@ Transform:
   m_Father: {fileID: 142251876}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 16.974, y: -15.076, z: 0}
+--- !u!1 &1566210654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566210655}
+  - component: {fileID: 1566210656}
+  m_Layer: 5
+  m_Name: DialogManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1566210655
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566210654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 924394328}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1566210656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566210654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fa6fda7e1b0524a8cbded6e44e1375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 2114387917}
 --- !u!1 &1568525288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,7 +5223,7 @@ GameObject:
   - component: {fileID: 1586747825}
   m_Layer: 0
   m_Name: Sir_Edward's_grave
-  m_TagString: Untagged
+  m_TagString: Puzzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5215,8 +5267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf53de75aa13cb48b4822be0824499a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemObject: {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
   isPickedUp: 0
+  itemObject: {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
 --- !u!1 &1719879973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5788,9 +5840,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusLight: 
+  diaPuzzLetLight: 
   dialogLetLight1: {fileID: 11400000, guid: df43298090965f34caa2aa6c2d1cf8b5, type: 2}
   dialogLetLight2: {fileID: 11400000, guid: cb26ef50d3b3df743a8432c2324fc092, type: 2}
-  diaPuzzLetLight: 
 --- !u!1 &1920032579
 GameObject:
   m_ObjectHideFlags: 0
@@ -6341,8 +6393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c745bd3de890e9a42835e28e37aa405e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puz_button_State: --
   puz_LetLight_Status: --
+  puz_Sigil_Status: 
 --- !u!1 &2074127356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6704,9 +6756,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 924394328}
     m_Modifications:
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -788
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343248, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -54.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343251, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_margin.x
+      value: -308.72638
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343251, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_margin.z
+      value: -320.30792
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430395343251, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2749408430578298088, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
       propertyPath: m_Name
       value: DialogBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749408430578298088, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2749408430578298091, guid: 89d2e4a4792d7184eabf7cf7463cb134, type: 3}
       propertyPath: m_Pivot.x

@@ -13,6 +13,5 @@ public class ItemScrObj : ScriptableObject
     public Sprite inventoryIcon;
     public Texture2D cursorSprite;
     public string pairObject;
-
     
 }

@@ -5,32 +5,28 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    // Puzzle manager is for communicating and remembering all puzzle statuses
-
-    private Puz_Button puz_Button; // tessting the manager
-    public string puz_button_State = "--";
-
+    // Strings
+    public string puz_LetLight_Status = "";
+    public string puz_Sigil_Status = "";
+    // Scripts
     private Puz_LetLight puzz_LetLight;
-    public string puz_LetLight_Status = "--";
+    private Puz_Sigil puzz_Sigil;
+    // List
+    List<string> puzzleNames = new List<string>();
+
 
     private void Start()
     {
-        puz_Button = FindObjectOfType<Puz_Button>();
         puzz_LetLight = FindObjectOfType<Puz_LetLight>();
+        puzz_Sigil = FindObjectOfType<Puz_Sigil>();
         puz_LetLight_Status = puzz_LetLight.statusLight;
-    }
-
-    void Update()
-    {
-
-        //string is_it_done = puz_Button.questDone.ToString(); // delete this when you dont need reference anymore
-        //GivePuzzleState(is_it_done); // delete this when you dont need reference anymore
+        puz_Sigil_Status = puzz_Sigil.statusSigil;
 
     }
     
-    //public string GivePuzzleState(string state) // delete this when you dont need reference anymore
-    //{
-    //    puz_button_State = state;
-    //    return state;
-    //}
+    public string GivePuzzState(string state)
+    {
+        Debug.Log(state);
+        return state;
+    }
 }

@@ -6,24 +6,27 @@ using UnityEngine.UI;
 
 public class InvSlot : MonoBehaviour
 {
-    [Header("All ScriptableObjects")]
-    [SerializeField] private ItemScrObj[] itemScrObj; // All the item scribtaple objects
-    [Header("Inventory Manager")]
-    private InventoryManager_II inventoryManager; // Inventory script
-
-    List<string> invenotryItemNames = new List<string>(); // List of all the item names
-    [SerializeField] private string slotItemName = "";
-    public string itemDialogText;
+    // Integers
     private int list_index;
-
-    [SerializeField] private Texture2D[] cursor;
+    // Strings
     public string cursorSpriteName;
     public string useItemName;
+    [SerializeField] private string slotItemName = "";
+    public string itemDialogText;
+    // Lists
+    List<string> invenotryItemNames = new List<string>(); // List of all the item names
+    // Sprites
+    [SerializeField] private Texture2D[] cursor;
+    // Scriptable Objects
+    [SerializeField] private ItemScrObj[] itemScrObj;
+    // Scripts
+    private InventoryManager_II inventoryManager;
+    private DialogManager dialogManager;
 
     void Start()
     {
-        //Cursor.SetCursor(cursor[0], Vector3.zero, CursorMode.ForceSoftware);
-        inventoryManager = FindObjectOfType<InventoryManager_II>(); // get the Inventory script
+        inventoryManager = FindObjectOfType<InventoryManager_II>(); 
+        dialogManager = FindObjectOfType<DialogManager>(); 
         slotItemName = inventoryManager.pickedUpName; // get the name of the picked up item from Inventory
 
         for (int i = 0; i < itemScrObj.Length; i++) // make a name list of all the item names in the scriptable list
@@ -38,15 +41,11 @@ public class InvSlot : MonoBehaviour
                 cursorSpriteName = itemScrObj[i].cursorSprite.name;
                 list_index = i;
                 gameObject.GetComponent<SpriteRenderer>().sprite = pickedUpItem.inventoryIcon; // Set correct item icon
-                //cursorSpriteName = pickedUpItem.inventoryIcon.name;
-                //Debug.Log("cursor nema: " + cursorSpriteName);
-                //cursor = pickedUpItem.inventoryIcon;
                 itemDialogText = pickedUpItem.itemText;
                 if (inventoryManager.itemCount > 3)
                 {
-                    inventoryManager.Listener(itemDialogText); // Send item dialog to Inventory witch will set it on UI
-                }
-                
+                    dialogManager.Listener(itemDialogText); // Send item dialog to Inventory witch will set it on UI
+                }             
             }
         }
     }
@@ -64,7 +63,7 @@ public class InvSlot : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
                     {
-                        inventoryManager.Listener("It's a " + slotItemName);
+                        dialogManager.Listener("It's a " + slotItemName);
                     }
                 }
             }

@@ -4,41 +4,61 @@ using UnityEngine;
 
 public class Puz_Sigil : MonoBehaviour
 {
+    // Strings
     public string statusSigil = "";
-    //public string dialogLetLight;
-    private InvSlot invSlot;
-    //[SerializeField] public QuestDialogScrObj dialogSigil1;
-    //[SerializeField] public QuestDialogScrObj dialogSigil2;
     public string diaPuzzSigil;
-    //[SerializeField] private GameObject edwardsGrave;
+    private string message;
+    // Bools
+    private bool isClicked = false;
+    // Scriptable Objects
+    [SerializeField] private ItemScrObj itemScrObj;
+    // Scripts
+    private PuzzleManager puzzleManager;
+    private DialogManager dialogManager;
 
-    private InventoryManager_II inventoryManager;
+
     void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager_II>();
+
+        puzzleManager = FindObjectOfType<PuzzleManager>();
+        dialogManager = FindObjectOfType<DialogManager>();
+
         statusSigil = "Violet";
-
-
+        puzzleManager.puz_Sigil_Status = statusSigil;
     }
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
-            invSlot = FindObjectOfType<InvSlot>();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "Puzzle")
+                if (hit.transform.tag == "Puzzle" && hit.transform.name == "Sir_Edward's_grave")
                 {
-                    string cursorSprite = invSlot.useItemName;
-
+                    isClicked = true;
+                    statusSigil = puzzleManager.puz_Sigil_Status;
+                    Debug.Log("puzz sig: " + statusSigil);
+                    if (statusSigil == "Violet")
+                    {
+                        message = "A dusty grave.";
+                    }
+                }
+                else
+                {
+                    isClicked = false;
                 }
             }
         }
-
-
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isClicked)
+        {
+            dialogManager.Listener(message);
+        }
     }
 }

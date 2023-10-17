@@ -5,36 +5,34 @@ using UnityEngine;
 
 public class PlayerController_II : MonoBehaviour
 {
-
-    public float speedWalk = 1.0f; // movment speed
+    // Integers
+    private int firsttime = 0; //counter
+    // Floats
     [SerializeField] private float hightLimit;
+    [SerializeField] private float ySeam;
+    public float speedWalk = 1.0f; // movment speed
     private float yMovement;
     private float yPos;
-    [SerializeField] private float ySeam;
-
     private float heroLocation; // movement positions
     private float heroDestination;
-
-    private int firsttime = 0; //counter
-
+    // Game Objects
     public GameObject[] walkPathPoint; // waypoint Game Objects --> List willbe made out of them
-
+    // Vecrots
     private Vector3 moveClick; // mouse click to cordinates
+    // Lists
     List<Vector3> wayPoints = new List<Vector3>(); // List of way points witch player  walk on
-
-
     // Scripts
     public CameraController cameraController; // CameraController script. Camera needs to know when player pass trhoug collision --> camMoveBool = true
     private PuzzleManager puzzleManager;
-    private InventoryManager_II inventoryManager_II;
+    private DialogManager dialogManager;
 
     public string status_LetLight;
 
     private void Start()
     {
-        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
-        cameraController = FindObjectOfType<CameraController>(); // CameraController script is now available
+        cameraController = FindObjectOfType<CameraController>();
+        dialogManager = FindObjectOfType<DialogManager>();
 
         foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
         {
@@ -52,7 +50,6 @@ public class PlayerController_II : MonoBehaviour
             status_LetLight = puzzleManager.puz_LetLight_Status;
             GetDecPoint();
         }
-
         if (heroDestination != heroLocation)
         {
             WalkingOn();
@@ -90,8 +87,7 @@ public class PlayerController_II : MonoBehaviour
                         {
                             wayPointIndex = 3;
                             string message = "It's too dark in there";
-                            inventoryManager_II.Listener(message);
-                            //Debug.Log("It's too dark in there");
+                            dialogManager.Listener(message);
                         }
                     }
                 }

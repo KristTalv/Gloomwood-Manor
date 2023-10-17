@@ -1,16 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour
 {
-    public ItemScrObj itemObject;
+    // Item script handles: 
+    // if player clicked item and enteret item area -->
+    // pick up item -->
+    // add item slot to inventory and destroy object from the scene
+
+    // Strings
     string itemName = "";
+    private string message;
+    // Bools
     private bool isClicked = false;
     public bool isPickedUp = false;
-
+    private bool wasEdward = false;
+    // Scriptable Objects
+    public ItemScrObj itemObject;
+    // Scripts
     private InventoryManager_II inventoryScript;
     private Puz_Sigil puzz_Sigil;
+    private DialogManager dialogManager;
+    private PuzzleManager puzzleManager;
 
     public void Start()
     {
@@ -18,6 +31,8 @@ public class ItemScript : MonoBehaviour
         isPickedUp = false;
         inventoryScript = FindObjectOfType<InventoryManager_II>();
         puzz_Sigil = FindObjectOfType<Puz_Sigil>();
+        dialogManager = FindObjectOfType<DialogManager>();
+        puzzleManager = FindObjectOfType<PuzzleManager>();
 
     }
     public void Update()
@@ -34,22 +49,27 @@ public class ItemScript : MonoBehaviour
                 {
                     if (itemScript.itemName == itemName)
                     {
-                        if(hit.transform.name == "Sir_Edward's_grave")
+                        if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
                         {
-                            string status = puzz_Sigil.statusSigil;
-                            if(status == "Violet")
+                            
+                            string status = puzzleManager.puz_Sigil_Status;
+                            Debug.Log("Item script: " + status);
+
+                            if (status == "Yellow")
+                            {
+                                //message = itemObject.itemText;
+                                //dialogManager.Listener(message);
+                                isClicked = true;
+                            }
+                            else
                             {
                                 isClicked = false;
-                                string message = "A dusty grave.";
-                                inventoryScript.Listener(message);
                             }
-
                         }
                         else
                         {
                             isClicked = true;
                         }
-                        
                     }
                 }
                 else
@@ -64,12 +84,17 @@ public class ItemScript : MonoBehaviour
     {
         if (other.gameObject.transform.tag == "Player" && isClicked == true)
         {
-            GiveItemName(itemName);
-            isPickedUp = true;
-            inventoryScript.InventoryBool(isPickedUp);
-            inventoryScript.AddToInventoryList(itemName);
-            Destroy(gameObject);
+            PickUpItem();
         }
+    }
+
+    private void PickUpItem()
+    {
+        GiveItemName(itemName);
+        isPickedUp = true;
+        inventoryScript.InventoryBool(isPickedUp);
+        inventoryScript.AddToInventoryList(itemName);
+        Destroy(gameObject);
     }
 
     public string GiveItemName(string pickUpName)

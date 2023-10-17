@@ -85,16 +85,4 @@ public class InventoryManager_II : MonoBehaviour
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }
-    public string Listener(string message) // This is called from inventory slot prefab --> inventory makes item dialog visible
-    {
-        if (dialogBox == true)
-        {
-            dialogBox.SetActive(false);
-        }
-        //Debug.Log("Item text: "+message);
-        dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
-        dialogBox.SetActive(true);
-        return message;
-    }
-
 }

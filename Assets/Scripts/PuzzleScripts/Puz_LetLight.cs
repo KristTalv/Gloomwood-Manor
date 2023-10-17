@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Puz_LetLight : MonoBehaviour
 {
+    // Strings
     public string statusLight = "";
-    //public string dialogLetLight;
-    private InvSlot invSlot;
+    public string diaPuzzLetLight;
+    // Scriptable Objects
     [SerializeField] public QuestDialogScrObj dialogLetLight1;
     [SerializeField] public QuestDialogScrObj dialogLetLight2;
-    public string diaPuzzLetLight;
+    // Scripts
+    private DialogManager dialogManager;
+    private PuzzleManager puzzleManager;
+    private InvSlot invSlot;
 
-    private InventoryManager_II inventoryManager;
     void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager_II>();
+        dialogManager = FindObjectOfType<DialogManager>();
+        puzzleManager = FindObjectOfType<PuzzleManager>();
         statusLight = "Violet";
-        
-
     }
 
     void Update()
@@ -36,16 +38,15 @@ public class Puz_LetLight : MonoBehaviour
                     if(cursorSprite == "Icon_Cursor_Lighter")
                     {
                         statusLight = "Green";
-                        PuzzleManager puzzleMang = FindObjectOfType<PuzzleManager>();
-                        puzzleMang.puz_LetLight_Status = statusLight;
+                        puzzleManager.puz_LetLight_Status = statusLight;
                         diaPuzzLetLight= dialogLetLight2.dialogText;
-                        inventoryManager.Listener(diaPuzzLetLight);
+                        dialogManager.Listener(diaPuzzLetLight);
                         Destroy(gameObject);
                     }
                     else
                     {
                         diaPuzzLetLight = dialogLetLight1.dialogText;
-                        inventoryManager.Listener(diaPuzzLetLight);
+                        dialogManager.Listener(diaPuzzLetLight);
                     }
                 }
             }
