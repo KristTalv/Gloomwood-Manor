@@ -18,7 +18,6 @@ public class Puz_Sword : MonoBehaviour
     void Start()
     {
         dialogManager = FindObjectOfType<DialogManager>();
-        //puz_Sigil = FindObjectOfType<Puz_Sigil>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
         statusSword = "Violet";
     }

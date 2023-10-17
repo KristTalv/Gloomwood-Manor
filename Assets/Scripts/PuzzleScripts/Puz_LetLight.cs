@@ -7,6 +7,10 @@ public class Puz_LetLight : MonoBehaviour
     // Strings
     public string statusLight = "";
     public string diaPuzzLetLight;
+    //GameObjects
+    [SerializeField] private GameObject sceneLights;
+    [SerializeField] private GameObject flameParticle;
+    
     // Scriptable Objects
     [SerializeField] public QuestDialogScrObj dialogLetLight1;
     [SerializeField] public QuestDialogScrObj dialogLetLight2;
@@ -41,6 +45,8 @@ public class Puz_LetLight : MonoBehaviour
                         puzzleManager.puz_LetLight_Status = statusLight;
                         diaPuzzLetLight= dialogLetLight2.dialogText;
                         dialogManager.Listener(diaPuzzLetLight);
+                        sceneLights.SetActive(true);
+                        flameParticle.SetActive(true);
                         Destroy(gameObject);
                     }
                     else
