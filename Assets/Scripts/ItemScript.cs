@@ -33,7 +33,6 @@ public class ItemScript : MonoBehaviour
         puzz_Sigil = FindObjectOfType<Puz_Sigil>();
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
-
     }
     public void Update()
     {
@@ -50,15 +49,10 @@ public class ItemScript : MonoBehaviour
                     if (itemScript.itemName == itemName)
                     {
                         if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
-                        {
-                            
-                            string status = puzzleManager.puz_Sigil_Status;
-                            Debug.Log("Item script: " + status);
-
+                        {                            
+                            string status = puzzleManager.status_Sigil;
                             if (status == "Yellow")
                             {
-                                //message = itemObject.itemText;
-                                //dialogManager.Listener(message);
                                 isClicked = true;
                             }
                             else
@@ -66,6 +60,18 @@ public class ItemScript : MonoBehaviour
                                 isClicked = false;
                             }
                         }
+                        //if (hit.transform.name == "Q_Sword & KnightGrave") // Sword item managment
+                        //{
+                        //    string status = puzzleManager.status_Sigil;
+                        //    if (status == "Green")
+                        //    {
+                        //        isClicked = true;
+                        //    }
+                        //    else
+                        //    {
+                        //        isClicked = false;
+                        //    }
+                        //}
                         else
                         {
                             isClicked = true;
@@ -84,7 +90,15 @@ public class ItemScript : MonoBehaviour
     {
         if (other.gameObject.transform.tag == "Player" && isClicked == true)
         {
-            PickUpItem();
+            if (puzzleManager.status_Sigil == "Yellow")
+            {
+                puzzleManager.status_Sigil = "Green";
+                PickUpItem();
+            }
+            else
+            {
+                PickUpItem();
+            }          
         }
     }
 

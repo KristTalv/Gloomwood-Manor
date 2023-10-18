@@ -47,7 +47,7 @@ public class PlayerController_II : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            status_LetLight = puzzleManager.puz_LetLight_Status;
+            status_LetLight = puzzleManager.status_LetLight;
             GetDecPoint();
         }
         if (heroDestination != heroLocation)

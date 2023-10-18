@@ -19,12 +19,11 @@ public class Puz_Sigil : MonoBehaviour
 
     void Start()
     {
-
         puzzleManager = FindObjectOfType<PuzzleManager>();
         dialogManager = FindObjectOfType<DialogManager>();
 
         statusSigil = "Violet";
-        puzzleManager.puz_Sigil_Status = statusSigil;
+        puzzleManager.status_Sigil = statusSigil;
     }
 
     void Update()
@@ -40,8 +39,7 @@ public class Puz_Sigil : MonoBehaviour
                 if (hit.transform.tag == "Puzzle" && hit.transform.name == "Sir_Edward's_grave")
                 {
                     isClicked = true;
-                    statusSigil = puzzleManager.puz_Sigil_Status;
-                    Debug.Log("puzz sig: " + statusSigil);
+                    statusSigil = puzzleManager.status_Sigil;
                     if (statusSigil == "Violet")
                     {
                         message = "A dusty grave.";

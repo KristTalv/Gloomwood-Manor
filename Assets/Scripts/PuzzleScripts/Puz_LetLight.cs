@@ -39,10 +39,11 @@ public class Puz_LetLight : MonoBehaviour
                 if (hit.transform.tag == "Puzzle")
                 {
                     string cursorSprite = invSlot.useItemName;
+                    Debug.Log("Light puzz: " + cursorSprite);
                     if(cursorSprite == "Icon_Cursor_Lighter")
                     {
                         statusLight = "Green";
-                        puzzleManager.puz_LetLight_Status = statusLight;
+                        puzzleManager.status_LetLight = statusLight;
                         diaPuzzLetLight= dialogLetLight2.dialogText;
                         dialogManager.Listener(diaPuzzLetLight);
                         sceneLights.SetActive(true);

@@ -6,9 +6,9 @@ using UnityEngine;
 public class PuzzleManager : MonoBehaviour
 {
     // Strings
-    public string puz_LetLight_Status = "";
-    public string puz_Sigil_Status = "";
-    public string puz_Sword_Status = "";
+    public string status_LetLight = "";
+    public string status_Sigil = "";
+    public string status_Sword = "";
     // Scripts
     private Puz_LetLight puzz_LetLight;
     private Puz_Sigil puzz_Sigil;
@@ -22,9 +22,9 @@ public class PuzzleManager : MonoBehaviour
         puzz_LetLight = FindObjectOfType<Puz_LetLight>();
         puzz_Sigil = FindObjectOfType<Puz_Sigil>();
         puzz_Sword = FindObjectOfType<Puz_Sword>();
-        puz_LetLight_Status = puzz_LetLight.statusLight;
-        puz_Sigil_Status = puzz_Sigil.statusSigil;
-        puz_Sword_Status = puzz_Sword.statusSword;
+        status_LetLight = puzz_LetLight.statusLight;
+        status_Sigil = puzz_Sigil.statusSigil;
+        status_Sword = puzz_Sword.statusSword;
 
     }
     

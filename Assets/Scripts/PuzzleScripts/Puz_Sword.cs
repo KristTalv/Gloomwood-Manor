@@ -6,6 +6,7 @@ public class Puz_Sword : MonoBehaviour
 {
     // strings
     public string statusSword = "";
+    private string cursorSprite;
     // bools
     private bool isClicked = false;
     // ScribtableObjects
@@ -13,7 +14,7 @@ public class Puz_Sword : MonoBehaviour
     // scripts
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
-    //private Puz_Sigil puz_Sigil;
+    private InvSlot invSlot;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class Puz_Sword : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            invSlot = FindObjectOfType<InvSlot>();
+            cursorSprite = invSlot.useItemName;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -33,7 +36,6 @@ public class Puz_Sword : MonoBehaviour
             {
                 if (hit.transform.tag == "Puzzle" && hit.transform.name == "Q_Sword & KnightGrave")
                 {
-                    Debug.Log(hit.transform.name);
                     isClicked = true;
                 }
             }
@@ -43,11 +45,30 @@ public class Puz_Sword : MonoBehaviour
     {
         if(isClicked == true)
         {
-            puzzleManager.puz_Sigil_Status = "Yellow";
-            Debug.Log("Sword: " + puzzleManager.puz_Sigil_Status);
-            statusSword = "Yellow"; 
-            string dialogOptio = diaPuzzSword.itemText;
-            dialogManager.Listener(dialogOptio);
+            statusSword = puzzleManager.status_Sword;
+            string statusSigil = puzzleManager.status_Sigil;
+            if (statusSword == "Violet")
+            {
+                puzzleManager.status_Sigil = "Yellow";
+                puzzleManager.status_Sword = "Yellow";
+                string dialogOptio = diaPuzzSword.itemText;
+                dialogManager.Listener(dialogOptio);
+            }
+            Debug.Log("Miekka sanoo sigils status: " + puzzleManager.status_Sigil);
+            if(statusSigil == "Green")
+            {
+                if (cursorSprite == "Icon_Cursor_Symbol")
+                {
+                    statusSword = "Green";
+                    puzzleManager.status_Sword = statusSword;
+                    Debug.Log(statusSword);
+
+                    string message = "The sword got off the statue! I'll take it.";
+                    dialogManager.Listener(message);
+
+                    //Destroy(gameObject);
+                }
+            }
         }
     }
     private void OnTriggerExit(Collider other)
