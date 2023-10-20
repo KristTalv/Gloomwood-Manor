@@ -19,6 +19,7 @@ public class Puz_LightsOff : MonoBehaviour
     private bool isClicked = false;
     private bool exitDoorRange = false;
     private bool timeOut = false;
+    private bool gameWon = false;
     // Game Object
     [SerializeField] private GameObject vfxParticle;
     [SerializeField] private GameObject sceneLight;
@@ -61,12 +62,7 @@ public class Puz_LightsOff : MonoBehaviour
         {
             timeOut = true;
             Debug.Log("Aika loppu! " + timeOut);
-            //gameOverScreen.SetActive(true);
             ajastin.Stop();
-        }
-        else
-        {
-            Debug.Log(timeLimit);
         }
     }
     void Update()
@@ -95,7 +91,7 @@ public class Puz_LightsOff : MonoBehaviour
             cursorName = mouseController.mouseScriptCursorName;
             CheckTheDoor();
         }
-        if(timeOut == true)
+        if(timeOut == true && gameWon == false)
         {
             gameOverScreen.SetActive(true);
             timeOut = false;
@@ -108,9 +104,7 @@ public class Puz_LightsOff : MonoBehaviour
         if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green")
         {
             endScreen.SetActive(true);
-            // Kirjoita koodi joka tsekkaa ett‰ aijemmat puzzlet --> done
-            // JA jos aika ei loppu s‰‰ voitat
-            // eli tee viel‰ laskuri
+            gameWon = true;
         }
     }
 
@@ -118,7 +112,6 @@ public class Puz_LightsOff : MonoBehaviour
     {
         if (isClicked == true )
         {
-
             message = dialog1.dialogText;
             dialogManager.Listener(message);
             if (cursorName == "Icon_Cursor_Sword")
