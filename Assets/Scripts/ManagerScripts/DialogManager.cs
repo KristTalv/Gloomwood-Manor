@@ -5,6 +5,7 @@ using TMPro;
 
 public class DialogManager : MonoBehaviour
 {
+    // Game Objects
     [SerializeField] private GameObject dialogBox;
 
     public string Listener(string message) // This mehtod is called when ever dialog is shown

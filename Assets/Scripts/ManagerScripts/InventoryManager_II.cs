@@ -20,6 +20,7 @@ public class InventoryManager_II : MonoBehaviour
     public string pickedUpName;
     private bool canPutInBool = false;
     public int itemCount;
+    private InvSlot invSlot;
 
     private void Start()
     {
@@ -51,10 +52,18 @@ public class InventoryManager_II : MonoBehaviour
             {
                 //Check if hitted object has itemscript --> is an item
                 ItemScript itemScript = hit.transform.GetComponent<ItemScript>();
+                Puz_Sword puz_Sword = hit.transform.GetComponent<Puz_Sword>();
                 if (itemScript != null)
                 {
                     pickedUpName = itemScript.GiveItemName(pickedUpName);
                     AddToInventoryList(pickedUpName);
+                }
+                if(puz_Sword != null)
+                {
+                    pickedUpName = puz_Sword.GiveSwordName(pickedUpName);
+                    string item = "Icon_Cursor_Symbol";
+                    AddToInventoryList(pickedUpName);
+                    UseItem(item);
                 }
                 else
                 {
@@ -84,5 +93,13 @@ public class InventoryManager_II : MonoBehaviour
     {
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
+    }
+    private void UseItem(string item)
+    {
+        invSlot = FindObjectOfType<InvSlot>();
+        if (invSlot.useItemName == item)
+        {
+            Debug.Log("DEstroy: " + item);
+        }
     }
 }

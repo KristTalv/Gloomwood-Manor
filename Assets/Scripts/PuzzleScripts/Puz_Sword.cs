@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class Puz_Sword : MonoBehaviour
 {
-    // strings
+    // Strings
     public string statusSword = "";
     private string cursorSprite;
-    // bools
+    private string itemName;
+    public string useItem = "Sigil";
+    // Bools
     private bool isClicked = false;
+    private bool isPickedUp = false;
     // ScribtableObjects
     [SerializeField] private ItemScrObj diaPuzzSword;
-    // scripts
+    // Scripts
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
-    private InvSlot invSlot;
+    private InventoryManager_II inventoryManager_II;
+    private MouseController mouseController;
 
     void Start()
     {
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
+        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
+        mouseController = FindObjectOfType<MouseController>();
         statusSword = "Violet";
+        itemName = diaPuzzSword.itemName;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            invSlot = FindObjectOfType<InvSlot>();
-            cursorSprite = invSlot.useItemName;
+        {   
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -36,6 +41,7 @@ public class Puz_Sword : MonoBehaviour
             {
                 if (hit.transform.tag == "Puzzle" && hit.transform.name == "Q_Sword & KnightGrave")
                 {
+                    cursorSprite = mouseController.mouseScriptCursorName;
                     isClicked = true;
                 }
             }
@@ -54,19 +60,15 @@ public class Puz_Sword : MonoBehaviour
                 string dialogOptio = diaPuzzSword.itemText;
                 dialogManager.Listener(dialogOptio);
             }
-            Debug.Log("Miekka sanoo sigils status: " + puzzleManager.status_Sigil);
             if(statusSigil == "Green")
             {
                 if (cursorSprite == "Icon_Cursor_Symbol")
                 {
                     statusSword = "Green";
                     puzzleManager.status_Sword = statusSword;
-                    Debug.Log(statusSword);
-
                     string message = "The sword got off the statue! I'll take it.";
                     dialogManager.Listener(message);
-
-                    //Destroy(gameObject);
+                    PickUpItem();
                 }
             }
         }
@@ -74,5 +76,19 @@ public class Puz_Sword : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         isClicked = false;
+    }
+    private void PickUpItem()
+    {
+        GiveSwordName(itemName);
+        isPickedUp = true;
+        inventoryManager_II.InventoryBool(isPickedUp);
+        inventoryManager_II.AddToInventoryList(itemName);
+        //Destroy(gameObject);
+    }
+
+    public string GiveSwordName(string pickUpName)
+    {
+        pickUpName = itemName;
+        return pickUpName;
     }
 }

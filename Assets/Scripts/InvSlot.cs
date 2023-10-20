@@ -22,11 +22,13 @@ public class InvSlot : MonoBehaviour
     // Scripts
     private InventoryManager_II inventoryManager;
     private DialogManager dialogManager;
+    private MouseController mouseController;
 
     void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager_II>(); 
         dialogManager = FindObjectOfType<DialogManager>(); 
+        mouseController = FindObjectOfType<MouseController>(); 
         slotItemName = inventoryManager.pickedUpName; // get the name of the picked up item from Inventory
 
         for (int i = 0; i < itemScrObj.Length; i++) // make a name list of all the item names in the scriptable list
@@ -84,7 +86,7 @@ public class InvSlot : MonoBehaviour
                             useItemName = cursorSpriteName;
                             if (cursor[i].name == cursorSpriteName)
                             {
-                                Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
+                                mouseController.SetCursor(cursorSpriteName);
                             }
                         }
                     }

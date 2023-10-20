@@ -17,12 +17,13 @@ public class Puz_LetLight : MonoBehaviour
     // Scripts
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
-    private InvSlot invSlot;
+    private MouseController mouseController;
 
     void Start()
     {
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
+        mouseController = FindObjectOfType<MouseController>();
         statusLight = "Violet";
     }
 
@@ -30,7 +31,6 @@ public class Puz_LetLight : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            invSlot = FindObjectOfType<InvSlot>();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -38,8 +38,7 @@ public class Puz_LetLight : MonoBehaviour
             {
                 if (hit.transform.tag == "Puzzle")
                 {
-                    string cursorSprite = invSlot.useItemName;
-                    Debug.Log("Light puzz: " + cursorSprite);
+                    string cursorSprite = mouseController.mouseScriptCursorName;
                     if(cursorSprite == "Icon_Cursor_Lighter")
                     {
                         statusLight = "Green";

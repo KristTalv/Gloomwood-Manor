@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459440d5bb9063146b3ab1e1063d97a9, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Sword
   itemText: 'A grave of a forgoten knight. Hi is holding a sword... hmm. It seems
     like some thing is missing from its handel.
 

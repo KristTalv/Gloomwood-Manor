@@ -60,18 +60,6 @@ public class ItemScript : MonoBehaviour
                                 isClicked = false;
                             }
                         }
-                        //if (hit.transform.name == "Q_Sword & KnightGrave") // Sword item managment
-                        //{
-                        //    string status = puzzleManager.status_Sigil;
-                        //    if (status == "Green")
-                        //    {
-                        //        isClicked = true;
-                        //    }
-                        //    else
-                        //    {
-                        //        isClicked = false;
-                        //    }
-                        //}
                         else
                         {
                             isClicked = true;
