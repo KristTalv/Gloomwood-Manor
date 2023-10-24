@@ -7,28 +7,30 @@ using System;
 
 public class QuestObjects : MonoBehaviour
 {
-    // Dialog UI element and boolean to turn it on or of
-    public GameObject dialogBox;
-    private bool talkBool = false;
 
-    // dialog options
+    // Strings
+    private string clickedObjName;
+    // Integers
+    private int cauntStartDoor = 0;
+    // GameObjects
+    public GameObject dialogBox;
+    // Bools
+    private bool talkBool = false;
+    private bool inRange = false;
+    // ScriptableObjects
     [SerializeField] private QuestDialogScrObj doorStuck1;
     [SerializeField] private QuestDialogScrObj doorStuck2;
     [SerializeField] private QuestDialogScrObj doorStuck3;
-
-    //scripts
+    // Scripts
     private PuzzleManager puzzleManager;
-
-    private string clickedObjName;
-
-    private int cauntStartDoor = 0;
-
+    private DialogManager dialogManager;
 
     private void Start()
     {
         cauntStartDoor = 0;
-        dialogBox.SetActive(false); // Dioalog box is not visable
+        //dialogBox.SetActive(false); // Dioalog box is not visable
         puzzleManager = FindObjectOfType<PuzzleManager>(); // Puzzle manager is awailable now
+        dialogManager = FindObjectOfType<DialogManager>();
 
     }
 
@@ -42,23 +44,26 @@ public class QuestObjects : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.tag == "quest") // if user clkicks a "quest" object, questBoolean is true
+                if (hit.transform.gameObject.name == gameObject.name) // if user clkicks a "quest" object, questBoolean is true
                 {
                     clickedObjName = hit.transform.name;
                     talkBool = true;
-
+                    if (inRange == true)
+                    {
+                        GiveDialog();
+                    }
                 }
                 else
                 {
                     talkBool = false;
-                }
-                
+                }               
             }
         }
 
     }
     private void OnTriggerEnter(Component other)
     {
+        inRange = true;
         GiveDialog(); // Takes care of dialog box and dialog options
     }
     private void OnTriggerExit(Collider other) // exiting makes dialog box unvisable and sets questBoolean to false --> re-enttering trigger area wont make 
@@ -66,26 +71,31 @@ public class QuestObjects : MonoBehaviour
     {
         dialogBox.SetActive(false);
         talkBool = false;
+        inRange = false;
     }
 
     private void GiveDialog()
     {
-        if (dialogBox == true && talkBool == true)
-        {
-            dialogBox.SetActive(false);
-        }
+        //if (dialogBox == true && talkBool == true)
+        //{
+        //    dialogBox.SetActive(false);
+        //}
 
         if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 0)
         {
-            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck1.dialogText;
+            string message = doorStuck1.dialogText;
+            dialogManager.Listener(message);
+            //dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck1.dialogText;
         }
         if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 1)
         {
-            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck2.dialogText;
+            string message = doorStuck2.dialogText;
+            dialogManager.Listener(message);
         }
         if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor >= 2)
         {
-            dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = doorStuck3.dialogText;
+            string message = doorStuck3.dialogText;
+            dialogManager.Listener(message);
         }
         if (talkBool == true)
         {
