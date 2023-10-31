@@ -6,12 +6,16 @@ public class Puz_Sword : MonoBehaviour
 {
     // Strings
     public string statusSword = "";
+    private string statusSigil;
     private string cursorSprite;
     private string itemName;
     public string useItem = "Sigil";
+    // Integer
+    private int swordCouner = 0;
     // Bools
     private bool isClicked = false;
     private bool isPickedUp = false;
+    private bool isInRange = false;
     // ScribtableObjects
     [SerializeField] private ItemScrObj diaPuzzSword;
     // Scripts
@@ -26,6 +30,7 @@ public class Puz_Sword : MonoBehaviour
         puzzleManager = FindObjectOfType<PuzzleManager>();
         inventoryManager_II = FindObjectOfType<InventoryManager_II>();
         mouseController = FindObjectOfType<MouseController>();
+
         statusSword = "Violet";
         itemName = diaPuzzSword.itemName;
     }
@@ -33,7 +38,9 @@ public class Puz_Sword : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {   
+        {
+            statusSword = puzzleManager.status_Sword;
+            statusSigil = puzzleManager.status_Sigil;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -44,38 +51,55 @@ public class Puz_Sword : MonoBehaviour
                     cursorSprite = mouseController.mouseScriptCursorName;
                     isClicked = true;
                 }
+                //if (isInRange == true && isClicked ==true)
+                //{
+                //    dialogManager.Listener("Just an old grave.");
+                //}
+                if (hit.transform.name != "Q_Sword & KnightGrave")
+                {
+                    isClicked = false;
+                }
             }
         }
     }
+    private void ExecuteSword()
+    {
+        statusSword = "Green";
+        puzzleManager.status_Sword = statusSword;
+        string done_message = "The sword got off the statue! I'll take it.";
+        Debug.Log(done_message);
+        dialogManager.Listener(done_message);
+        PickUpItem();
+        //swordCouner++;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(isClicked == true)
+        isInRange = true;
+
+        if (isInRange == true && isClicked == true)
         {
-            statusSword = puzzleManager.status_Sword;
-            string statusSigil = puzzleManager.status_Sigil;
+            string message;
+
             if (statusSword == "Violet")
             {
+                Debug.Log("In Violet if");
                 puzzleManager.status_Sigil = "Yellow";
                 puzzleManager.status_Sword = "Yellow";
-                string dialogOptio = diaPuzzSword.itemText;
-                dialogManager.Listener(dialogOptio);
+
+                message = diaPuzzSword.itemText;
+                dialogManager.Listener(message);
             }
-            if(statusSigil == "Green")
+
+            if (statusSigil == "Green" && cursorSprite == "Icon_Cursor_Symbol")
             {
-                if (cursorSprite == "Icon_Cursor_Symbol")
-                {
-                    statusSword = "Green";
-                    puzzleManager.status_Sword = statusSword;
-                    string message = "The sword got off the statue! I'll take it.";
-                    dialogManager.Listener(message);
-                    PickUpItem();
-                }
+                ExecuteSword();
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         isClicked = false;
+        isInRange = false;
     }
     private void PickUpItem()
     {
@@ -85,7 +109,7 @@ public class Puz_Sword : MonoBehaviour
         inventoryManager_II.AddToInventoryList(itemName);
         //Destroy(gameObject);
     }
-
+    
     public string GiveSwordName(string pickUpName)
     {
         pickUpName = itemName;

@@ -8,11 +8,7 @@ public class PlayerController_II : MonoBehaviour
     // Integers
     private int firsttime = 0; //counter
     // Floats
-    [SerializeField] private float hightLimit;
-    [SerializeField] private float ySeam;
     public float speedWalk = 1.0f; // movment speed
-    private float yMovement;
-    private float yPos;
     private float heroLocation; // movement positions
     private float heroDestination;
     // Game Objects

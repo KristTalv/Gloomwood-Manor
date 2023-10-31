@@ -48,22 +48,19 @@ public class ItemScript : MonoBehaviour
                 {
                     if (itemScript.itemName == itemName)
                     {
-                        if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
-                        {                            
-                            string status = puzzleManager.status_Sigil;
-                            if (status == "Yellow")
-                            {
-                                isClicked = true;
-                            }
-                            else
-                            {
-                                isClicked = false;
-                            }
-                        }
-                        else
-                        {
-                            isClicked = true;
-                        }
+                        isClicked = true;
+                        //if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
+                        //{
+                        //    string status = puzzleManager.status_Sigil;
+                        //    if (status == "Yellow")
+                        //    {
+                        //        isClicked = true;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    isClicked = true;
+                        //}
                     }
                 }
                 else
@@ -78,10 +75,18 @@ public class ItemScript : MonoBehaviour
     {
         if (other.gameObject.transform.tag == "Player" && isClicked == true)
         {
-            if (puzzleManager.status_Sigil == "Yellow")
+            if (gameObject.transform.name == "Sir_Edward's_grave")
             {
-                puzzleManager.status_Sigil = "Green";
-                PickUpItem();
+                string status = puzzleManager.status_Sigil;
+                if (status == "Yellow")
+                {
+                    puzzleManager.status_Sigil = "Green";
+                    PickUpItem();
+                }
+                if (status == "Violet")
+                {
+                    dialogManager.Listener("Some dusty graves.");
+                }
             }
             else
             {

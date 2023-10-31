@@ -44,7 +44,7 @@ public class InvSlot : MonoBehaviour
                 list_index = i;
                 gameObject.GetComponent<SpriteRenderer>().sprite = pickedUpItem.inventoryIcon; // Set correct item icon
                 itemDialogText = pickedUpItem.itemText;
-                if (inventoryManager.itemCount > 3)
+                if (inventoryManager.itemCount > 3 && pickedUpItem.itemName != "Sword")
                 {
                     dialogManager.Listener(itemDialogText); // Send item dialog to Inventory witch will set it on UI
                 }             

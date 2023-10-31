@@ -6,20 +6,21 @@ using UnityEngine.UI;
 
 public class InventoryManager_II : MonoBehaviour
 {
-    [Header("Begin items")]
-    [SerializeField] private ItemScrObj[] begingItemScrObj;
-    [Header("Items")]
-    [SerializeField] private ItemScrObj[] itemScrObj; // All the item scribtaple objects
-    [Header("Slot")]
-    [SerializeField] private GameObject itemSlot;
-    [Header("Dialog Box")]
-    [SerializeField] private GameObject dialogBox;
-
-    List<string> pickedUpNames = new List<string>(); // List of picked up items
-
+    //Strings
     public string pickedUpName;
-    private bool canPutInBool = false;
+    // Integers
     public int itemCount;
+    // Bools
+    private bool canPutInBool = false;
+    //Scriptable Objects
+    [SerializeField] private ItemScrObj[] begingItemScrObj;
+    [SerializeField] private ItemScrObj[] itemScrObj; // All the item scribtaple objects
+    // GameObjects
+    [SerializeField] private GameObject itemSlot;
+    [SerializeField] private GameObject dialogBox;
+    // Lists
+    List<string> pickedUpNames = new List<string>(); // List of picked up items
+    // Scripts
     private InvSlot invSlot;
 
     private void Start()
@@ -32,6 +33,7 @@ public class InventoryManager_II : MonoBehaviour
         StartCoroutine(BegingItemScrObj());
         itemCount = pickedUpNames.Count;
     }
+
     IEnumerator BegingItemScrObj()
     {
         for (int i = 0; i < pickedUpNames.Count; i++)
@@ -61,9 +63,8 @@ public class InventoryManager_II : MonoBehaviour
                 if(puz_Sword != null)
                 {
                     pickedUpName = puz_Sword.GiveSwordName(pickedUpName);
-                    string item = "Icon_Cursor_Symbol";
                     AddToInventoryList(pickedUpName);
-                    UseItem(item);
+                    //UseItem(item); 
                 }
                 else
                 {
@@ -78,6 +79,7 @@ public class InventoryManager_II : MonoBehaviour
         canPutInBool = canDo;
         return canPutInBool;
     }
+
     public void AddToInventoryList(string pickUpName)
     {
         if (canPutInBool == true && !pickedUpNames.Contains(pickedUpName)) // item script has tells that item has been picked up and the item name is not inthe list
@@ -87,14 +89,15 @@ public class InventoryManager_II : MonoBehaviour
             pickedUpNames.Add(pickedUpName);
             MakeInvtSlot(pickUpName);
         }
-
     }
+
     private void MakeInvtSlot(string itemName) // Creates the inventory slot for the picked up item
     {
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }
-    private void UseItem(string item)
+
+    private void UseItem(string item) // Does not do anything yet.
     {
         invSlot = FindObjectOfType<InvSlot>();
         if (invSlot.useItemName == item)

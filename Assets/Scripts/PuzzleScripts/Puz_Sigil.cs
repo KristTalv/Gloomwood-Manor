@@ -56,7 +56,7 @@ public class Puz_Sigil : MonoBehaviour
     {
         if (isClicked)
         {
-            dialogManager.Listener(message);
+            //dialogManager.Listener(message);
         }
     }
 }
