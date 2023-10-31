@@ -3793,7 +3793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -5906,6 +5906,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRangeExitDoor: 0
+  dia1: {fileID: 11400000, guid: f02c53d6eade1544584b54b1c67d42fc, type: 2}
+  dia2: {fileID: 11400000, guid: b78abb5ea02bcfb49834541c7c2360f6, type: 2}
+  dia3: {fileID: 11400000, guid: a02e9c2cc022da846bb2b7cdf82bbe8b, type: 2}
 --- !u!1 &1137234072
 GameObject:
   m_ObjectHideFlags: 0
