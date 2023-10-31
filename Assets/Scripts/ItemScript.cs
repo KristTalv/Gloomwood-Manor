@@ -49,14 +49,14 @@ public class ItemScript : MonoBehaviour
                     if (itemScript.itemName == itemName)
                     {
                         isClicked = true;
-                        //if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
-                        //{
-                        //    string status = puzzleManager.status_Sigil;
-                        //    if (status == "Yellow")
-                        //    {
-                        //        isClicked = true;
-                        //    }
-                        //}
+                        if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
+                        {
+                            string status = puzzleManager.status_Sigil;
+                            if (status == "Yellow")
+                            {
+                                isClicked = true;
+                            }
+                        }
                         //else
                         //{
                         //    isClicked = true;

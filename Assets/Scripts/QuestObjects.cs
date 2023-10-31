@@ -24,19 +24,24 @@ public class QuestObjects : MonoBehaviour
     private bool talkBool = false;
     private bool inRange = false;
     // ScriptableObjects
+    [Header("Start Door")]
     [SerializeField] private QuestDialogScrObj doorStuck1;
     [SerializeField] private QuestDialogScrObj doorStuck2;
     [SerializeField] private QuestDialogScrObj doorStuck3;
     // RightSideGraves
+    [Header("Right Side Graves")]
     [SerializeField] private QuestDialogScrObj graveEmma1;
     [SerializeField] private QuestDialogScrObj graveRichard1;
     [SerializeField] private QuestDialogScrObj graveDusty;
     // LeftSideGraves
-    //[SerializeField] private QuestDialogScrObj graveWilamm;
-    //[SerializeField] private QuestDialogScrObj graveSirEdward;
+    [Header("Left Side Graves")]
+    [SerializeField] private QuestDialogScrObj graveWilamm;
+    [SerializeField] private QuestDialogScrObj graveSirEdward;
+    [SerializeField] private QuestDialogScrObj graveRamsey;
     // Lists
     List<float> y1 = new List<float>();
     List<QuestDialogScrObj> graveDialogOptio = new List<QuestDialogScrObj>();
+    List<QuestDialogScrObj> graveLeftDialogOptio = new List<QuestDialogScrObj>();
     // Vector 3
     private Vector3 clickPos;
     // Scripts
@@ -57,6 +62,9 @@ public class QuestObjects : MonoBehaviour
         graveDialogOptio.Add(graveRichard1);
         graveDialogOptio.Add(graveEmma1);
 
+        graveLeftDialogOptio.Add(graveWilamm);
+        graveLeftDialogOptio.Add(graveSirEdward);
+        graveLeftDialogOptio.Add(graveRamsey);
     }
 
     void Update()
@@ -72,7 +80,6 @@ public class QuestObjects : MonoBehaviour
                 if (hit.transform.gameObject.name == gameObject.name) // if user clkicks a "quest" object, questBoolean is true
                 {
                     clickedObjName = hit.transform.name;
-                    //clickPos = Input.mousePosition;
                     clickPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
                     talkBool = true;
                     if (inRange == true)
@@ -120,7 +127,7 @@ public class QuestObjects : MonoBehaviour
             message = doorStuck3.dialogText;
             dialogManager.Listener(message);
         }
-        if (clickedObjName == "RightSideGraves" && talkBool == true)
+        if (clickedObjName == "RightSideGraves" && talkBool == true && inRange == true)
         {
             float smallestResult = 100000000;
             for (int i = 0; i < y1.Count; i++)
@@ -135,21 +142,21 @@ public class QuestObjects : MonoBehaviour
             message = graveDialogOptio[graveIndex].dialogText;
             dialogManager.Listener(message);
         }
-        //if (clickedObjName == "Coffing_Emma" && talkBool == true)
-        //{
-        //    message = graveEmma1.dialogText;
-        //    dialogManager.Listener(message);
-        //}
-        //if (clickedObjName == "Richard_Grave" && talkBool == true)
-        //{
-        //    message = graveRichard1.dialogText;
-        //    dialogManager.Listener(message);
-        //}
-        //if (clickedObjName == "Grave_Dusty" && talkBool == true)
-        //{
-        //    message = graveDusty.dialogText;
-        //    dialogManager.Listener(message);
-        //}
+        if (clickedObjName == "LeftSideGraves" && talkBool == true && inRange == true)
+        {
+            float smallestResult = 100000000;
+            for (int i = 0; i < y1.Count; i++)
+            {
+                float resutl = y1[i] - clickPos.y;
+                if (Mathf.Abs(resutl) < smallestResult)
+                {
+                    smallestResult = resutl;
+                    graveIndex = i;
+                }
+            }
+            message = graveLeftDialogOptio[graveIndex].dialogText;
+            dialogManager.Listener(message);
+        }
         if (talkBool == true)
         {
             dialogBox.SetActive(true);

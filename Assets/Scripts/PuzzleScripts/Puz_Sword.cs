@@ -10,8 +10,6 @@ public class Puz_Sword : MonoBehaviour
     private string cursorSprite;
     private string itemName;
     public string useItem = "Sigil";
-    // Integer
-    private int swordCouner = 0;
     // Bools
     private bool isClicked = false;
     private bool isPickedUp = false;
@@ -67,10 +65,8 @@ public class Puz_Sword : MonoBehaviour
         statusSword = "Green";
         puzzleManager.status_Sword = statusSword;
         string done_message = "The sword got off the statue! I'll take it.";
-        Debug.Log(done_message);
         dialogManager.Listener(done_message);
         PickUpItem();
-        //swordCouner++;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -82,7 +78,6 @@ public class Puz_Sword : MonoBehaviour
 
             if (statusSword == "Violet")
             {
-                Debug.Log("In Violet if");
                 puzzleManager.status_Sigil = "Yellow";
                 puzzleManager.status_Sword = "Yellow";
 
@@ -107,7 +102,6 @@ public class Puz_Sword : MonoBehaviour
         isPickedUp = true;
         inventoryManager_II.InventoryBool(isPickedUp);
         inventoryManager_II.AddToInventoryList(itemName);
-        //Destroy(gameObject);
     }
     
     public string GiveSwordName(string pickUpName)

@@ -14,13 +14,11 @@ public class Puz_Sigil : MonoBehaviour
     [SerializeField] private ItemScrObj itemScrObj;
     // Scripts
     private PuzzleManager puzzleManager;
-    private DialogManager dialogManager;
 
 
     void Start()
     {
         puzzleManager = FindObjectOfType<PuzzleManager>();
-        dialogManager = FindObjectOfType<DialogManager>();
 
         statusSigil = "Violet";
         puzzleManager.status_Sigil = statusSigil;
