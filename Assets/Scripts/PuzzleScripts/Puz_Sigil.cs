@@ -7,54 +7,38 @@ public class Puz_Sigil : MonoBehaviour
     // Strings
     public string statusSigil = "";
     public string diaPuzzSigil;
-    private string message;
+    private string itemName;
     // Bools
-    private bool isClicked = false;
+    private bool isPickedUp = false;
     // Scriptable Objects
     [SerializeField] private ItemScrObj itemScrObj;
     // Scripts
     private PuzzleManager puzzleManager;
+    private InventoryManager_II inventoryManager_II;
 
 
     void Start()
     {
         puzzleManager = FindObjectOfType<PuzzleManager>();
+        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
 
         statusSigil = "Violet";
         puzzleManager.status_Sigil = statusSigil;
     }
 
-    void Update()
+    public void PickUpSigil()
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "Puzzle" && hit.transform.name == "Sir_Edward's_grave")
-                {
-                    isClicked = true;
-                    statusSigil = puzzleManager.status_Sigil;
-                    if (statusSigil == "Violet")
-                    {
-                        message = "A dusty grave.";
-                    }
-                }
-                else
-                {
-                    isClicked = false;
-                }
-            }
-        }
+        itemName = "Sigil";
+        inventoryManager_II.pickedUpName = itemName;
+        GiveSigilName(itemName);
+        isPickedUp = true;
+        inventoryManager_II.InventoryBool(isPickedUp);
+        inventoryManager_II.AddToInventoryList(itemName);
     }
-    private void OnTriggerEnter(Collider other)
+
+    public string GiveSigilName(string pickUpName)
     {
-        if (isClicked)
-        {
-            //dialogManager.Listener(message);
-        }
+        pickUpName = itemName;
+        return pickUpName;
     }
 }

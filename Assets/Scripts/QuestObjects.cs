@@ -47,12 +47,14 @@ public class QuestObjects : MonoBehaviour
     // Scripts
     private PuzzleManager puzzleManager;
     private DialogManager dialogManager;
+    private Puz_Sigil puz_Sigil;
 
     private void Start()
     {
         cauntStartDoor = 0;
         puzzleManager = FindObjectOfType<PuzzleManager>(); // Puzzle manager is awailable now
         dialogManager = FindObjectOfType<DialogManager>();
+        puz_Sigil = FindObjectOfType<Puz_Sigil>();
 
         y1.Add(y1_0);
         y1.Add(y1_1);
@@ -152,6 +154,14 @@ public class QuestObjects : MonoBehaviour
                 {
                     smallestResult = resutl;
                     graveIndex = i;
+                }
+            }
+            if (graveIndex == 1 )
+            {
+                string status = puzzleManager.status_Sigil;
+                if(status == "Yellow")
+                {
+                    puz_Sigil.PickUpSigil();
                 }
             }
             message = graveLeftDialogOptio[graveIndex].dialogText;

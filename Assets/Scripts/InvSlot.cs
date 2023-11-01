@@ -30,6 +30,7 @@ public class InvSlot : MonoBehaviour
         dialogManager = FindObjectOfType<DialogManager>(); 
         mouseController = FindObjectOfType<MouseController>(); 
         slotItemName = inventoryManager.pickedUpName; // get the name of the picked up item from Inventory
+        Debug.Log("Slot: " + slotItemName);
 
         for (int i = 0; i < itemScrObj.Length; i++) // make a name list of all the item names in the scriptable list
         {

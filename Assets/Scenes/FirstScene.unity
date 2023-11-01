@@ -3443,7 +3443,7 @@ Transform:
   - {fileID: 861709379}
   - {fileID: 949575975}
   m_Father: {fileID: 1281729557}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &648245901
 MonoBehaviour:
@@ -4248,7 +4248,6 @@ GameObject:
   m_Component:
   - component: {fileID: 758093920}
   - component: {fileID: 758093921}
-  - component: {fileID: 758093922}
   m_Layer: 0
   m_Name: Q_Sigil
   m_TagString: Untagged
@@ -4285,19 +4284,6 @@ MonoBehaviour:
   statusSigil: 
   diaPuzzSigil: 
   itemScrObj: {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
---- !u!65 &758093922
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758093919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4828134, y: 0.19296002, z: 3.324781}
-  m_Center: {x: -3.8515947, y: 2.0476398, z: -1.1623912}
 --- !u!1 &764441893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,7 +5010,7 @@ Transform:
   - {fileID: 961908252}
   - {fileID: 1568525289}
   m_Father: {fileID: 1281729557}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &940583127
 MonoBehaviour:
@@ -6785,7 +6771,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.03, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1586747821}
   - {fileID: 940583126}
   - {fileID: 648245900}
   m_Father: {fileID: 1123578143}
@@ -7291,65 +7276,6 @@ Transform:
   m_Father: {fileID: 683361989}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1586747820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1586747821}
-  - component: {fileID: 1586747822}
-  - component: {fileID: 1586747825}
-  m_Layer: 0
-  m_Name: Sir_Edward's_grave(temScript)
-  m_TagString: Puzzle
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1586747821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586747820}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 0.9242, z: 3.0985}
-  m_Children: []
-  m_Father: {fileID: 1281729557}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1586747822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586747820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0473139, y: 1.475563, z: 1.3143843}
-  m_Center: {x: -3.3003988, y: 2.4797776, z: -0.15719344}
---- !u!114 &1586747825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586747820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf53de75aa13cb48b4822be0824499a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPickedUp: 0
-  itemObject: {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
 --- !u!1 &1732735119
 GameObject:
   m_ObjectHideFlags: 0

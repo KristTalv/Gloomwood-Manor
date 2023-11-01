@@ -8,6 +8,7 @@ public class MouseController : MonoBehaviour
     public string mouseScriptCursorName;
     // Sprites
     [SerializeField] private Texture2D[] cursor;
+    //[SerializeField] private Texture2D def_cursor;
 
     public void SetCursor(string name)
     {
@@ -20,4 +21,5 @@ public class MouseController : MonoBehaviour
             }
         }
     }
+
 }
