@@ -34,6 +34,7 @@ public class Puz_Sigil : MonoBehaviour
         isPickedUp = true;
         inventoryManager_II.InventoryBool(isPickedUp);
         inventoryManager_II.AddToInventoryList(itemName);
+        puzzleManager.status_Sigil = "Green";
     }
 
     public string GiveSigilName(string pickUpName)

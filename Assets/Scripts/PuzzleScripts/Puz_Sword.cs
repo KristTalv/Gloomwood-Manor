@@ -44,7 +44,7 @@ public class Puz_Sword : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "Puzzle" && hit.transform.name == "Q_Sword & KnightGrave")
+                if (hit.transform.name == "Q_Sword & KnightGrave")
                 {
                     cursorSprite = mouseController.mouseScriptCursorName;
                     isClicked = true;

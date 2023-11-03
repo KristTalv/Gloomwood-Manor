@@ -9,7 +9,7 @@ public class GoalDoor : MonoBehaviour
     // Integer
     private int counter = 0;
     // Bools
-    public bool inRangeExitDoor = false;
+    public bool inRangeFinalDoor = false;
     private bool isClicked = false;
     // ScriptableObjects
     [SerializeField] private QuestDialogScrObj dia1;
@@ -38,7 +38,7 @@ public class GoalDoor : MonoBehaviour
                 {
                     isClicked = true;
                 }
-                if(hit.transform.name == gameObject.transform.name && inRangeExitDoor == true)
+                if(hit.transform.name == gameObject.transform.name && inRangeFinalDoor == true)
                 {
                     isClicked = true;
                     GiveDialogExit();
@@ -53,8 +53,8 @@ public class GoalDoor : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        inRangeExitDoor = true;
-        puz_LightsOff.GiveRangeBool(inRangeExitDoor);
+        inRangeFinalDoor = true;
+        puz_LightsOff.GiveRangeBool(inRangeFinalDoor);
         if (isClicked == true)
         {
             GiveDialogExit();  
@@ -62,8 +62,8 @@ public class GoalDoor : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        inRangeExitDoor = false;
-        puz_LightsOff.GiveRangeBool(inRangeExitDoor);
+        inRangeFinalDoor = false;
+        puz_LightsOff.GiveRangeBool(inRangeFinalDoor);
     }
 
     private void GiveDialogExit()

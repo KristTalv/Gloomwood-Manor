@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     // String
-    public string mouseScriptCursorName;
+    public string mouseScriptCursorName = "";
     // Bools
     private bool red;
     // Sprites
@@ -16,13 +16,29 @@ public class MouseController : MonoBehaviour
     public void SetCursor(string name)
     {
         mouseScriptCursorName = name;
-        for (int i = 0; i < cursor.Length; i ++)
+        if (red == true && mouseScriptCursorName == "") 
         {
-            if (mouseScriptCursorName == cursor[i].name)
+            Cursor.SetCursor(cursor_active, Vector3.zero, CursorMode.ForceSoftware);
+        }
+        if (red == false && mouseScriptCursorName == "")
+        {
+            Cursor.SetCursor(default, Vector3.zero, CursorMode.ForceSoftware);
+        }
+        else
+        {
+            for (int i = 0; i < cursor.Length; i++)
             {
-                Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
+                if (mouseScriptCursorName == cursor[i].name)
+                {
+                    Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
+                }
             }
         }
+    }
+    public void NulCursor(string name)
+    {
+        mouseScriptCursorName = name;
+        Cursor.SetCursor(default, Vector3.zero, CursorMode.ForceSoftware);
     }
     private void Update()
     {
@@ -30,16 +46,19 @@ public class MouseController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if(hit.transform.tag == "quest" || hit.transform.tag == "Puzzle" || hit.transform.tag == "Item")
+            if(mouseScriptCursorName == "")
             {
-                Cursor.SetCursor(cursor_active, Vector3.zero, CursorMode.ForceSoftware);
+                if (hit.transform.tag == "quest" || hit.transform.tag == "Puzzle" || hit.transform.tag == "Item")
+                {
+                    red = true;
+                    SetCursor(mouseScriptCursorName);
+                }
+                if (hit.transform.tag != "quest" && hit.transform.tag != "Puzzle" && hit.transform.tag != "Item")
+                {
+                    red = false;
+                    SetCursor(mouseScriptCursorName);
+                }
             }
-            else
-            {
-            
-                Cursor.SetCursor(default, Vector3.zero, CursorMode.ForceSoftware);
-            }
-
         }
     }
 

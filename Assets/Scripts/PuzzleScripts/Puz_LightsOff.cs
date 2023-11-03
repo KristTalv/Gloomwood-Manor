@@ -61,7 +61,6 @@ public class Puz_LightsOff : MonoBehaviour
         if(timeLimit <= 0)
         {
             timeOut = true;
-            Debug.Log("Aika loppu! " + timeOut);
             ajastin.Stop();
         }
     }
@@ -74,21 +73,21 @@ public class Puz_LightsOff : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.name == "Q_LightsOff")
-                {
-                    cursorName = mouseController.mouseScriptCursorName;
-                    isClicked = true;
-                }
                 if (hit.transform.name == "Door_Goal")
                 {
-                    exitDoorRange = goalDoor.inRangeExitDoor;
+                    cursorName = mouseController.mouseScriptCursorName;
+                    exitDoorRange = goalDoor.inRangeFinalDoor;
+                    isClicked = true;
+                }
+                if(hit.transform.name == "Q_LightsOff")
+                {
+                    cursorName = mouseController.mouseScriptCursorName;
                     isClicked = true;
                 }
             }
         }
         if(exitDoorRange == true && isClicked == true)
         {
-            cursorName = mouseController.mouseScriptCursorName;
             CheckTheDoor();
         }
         if(timeOut == true && gameWon == false)
@@ -135,7 +134,6 @@ public class Puz_LightsOff : MonoBehaviour
     {
         exitDoorRange = isInRange;
         UpdateBool(exitDoorRange);
-        Debug.Log(exitDoorRange);
         return exitDoorRange;
     }
     private void UpdateBool(bool exitDoorRange)

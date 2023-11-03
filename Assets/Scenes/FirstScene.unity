@@ -8437,7 +8437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status_LightsOff: 
-  timeLimit: 30
+  timeLimit: 100
   vfxParticle: {fileID: 855052015}
   sceneLight: {fileID: 824989948}
   startLight: {fileID: 1188797430}
