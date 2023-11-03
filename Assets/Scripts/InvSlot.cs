@@ -65,7 +65,8 @@ public class InvSlot : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
                     {
-                        dialogManager.Listener("It's a " + slotItemName);
+                        string message = this.itemDialogText;
+                        dialogManager.Listener(message);
                     }
                 }
             }

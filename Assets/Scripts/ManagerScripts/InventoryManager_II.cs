@@ -22,6 +22,10 @@ public class InventoryManager_II : MonoBehaviour
     List<string> pickedUpNames = new List<string>(); // List of picked up items
     // Scripts
     private InvSlot invSlot;
+    // this code also uses:
+    // - ItemScript
+    // -Puz_Sword
+
 
     private void Start()
     {
@@ -97,12 +101,16 @@ public class InventoryManager_II : MonoBehaviour
         canPutInBool = false;
     }
 
-    private void UseItem(string item) // Does not do anything yet.
+    public void UseItem(string item) 
     {
-        invSlot = FindObjectOfType<InvSlot>();
-        if (invSlot.useItemName == item)
+        for (int i = 0; i < pickedUpNames.Count; i++)
         {
-            Debug.Log("DEstroy: " + item);
+            if (item == pickedUpNames[i])
+            {
+                Debug.Log(pickedUpNames[i] + " index: " + i);
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+                pickedUpNames.RemoveAt(i);
+            }
         }
     }
 }

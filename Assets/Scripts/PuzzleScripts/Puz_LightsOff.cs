@@ -35,6 +35,7 @@ public class Puz_LightsOff : MonoBehaviour
     private PuzzleManager puzzleManager;
     private GoalDoor goalDoor;
     private MouseController mouseController;
+    private InventoryManager_II inventoryManager_II;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class Puz_LightsOff : MonoBehaviour
         puzzleManager = FindObjectOfType<PuzzleManager>();
         goalDoor = FindObjectOfType<GoalDoor>();
         mouseController = FindObjectOfType<MouseController>();
+        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
 
         puzzleManager.status_LightsOff = status_LightsOff;
 
@@ -118,6 +120,7 @@ public class Puz_LightsOff : MonoBehaviour
                 status_LightsOff = "Yellow";
                 puzzleManager.status_LightsOff = status_LightsOff;
                 message = dialog2.dialogText;
+                inventoryManager_II.UseItem("Sword");
 
                 StartCounter();
 

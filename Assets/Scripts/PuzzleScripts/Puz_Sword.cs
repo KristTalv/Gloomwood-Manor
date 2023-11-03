@@ -88,6 +88,7 @@ public class Puz_Sword : MonoBehaviour
             if (statusSigil == "Green" && cursorSprite == "Icon_Cursor_Symbol")
             {
                 ExecuteSword();
+                inventoryManager_II.UseItem("Sigil");
             }
         }
     }
