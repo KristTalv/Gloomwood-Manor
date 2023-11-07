@@ -107,7 +107,6 @@ public class InventoryManager_II : MonoBehaviour
         {
             if (item == pickedUpNames[i])
             {
-                Debug.Log(pickedUpNames[i] + " index: " + i);
                 Destroy(gameObject.transform.GetChild(i).gameObject);
                 pickedUpNames.RemoveAt(i);
             }
