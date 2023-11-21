@@ -14,27 +14,27 @@ public class Puz_Sigil : MonoBehaviour
     [SerializeField] private ItemScrObj itemScrObj;
     // Scripts
     private PuzzleManager puzzleManager;
-    private InventoryManager_II inventoryManager_II;
+    private InventoryManager_II inventoryManagerII;
 
 
     void Start()
     {
         puzzleManager = FindObjectOfType<PuzzleManager>();
-        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
+        inventoryManagerII = FindObjectOfType<InventoryManager_II>();
 
         statusSigil = "Violet";
-        puzzleManager.status_Sigil = statusSigil;
+        puzzleManager.statusSigil = statusSigil;
     }
 
     public void PickUpSigil()
     {
         itemName = "Sigil";
-        inventoryManager_II.pickedUpName = itemName;
+        inventoryManagerII.pickedUpName = itemName;
         GiveSigilName(itemName);
         isPickedUp = true;
-        inventoryManager_II.InventoryBool(isPickedUp);
-        inventoryManager_II.AddToInventoryList(itemName);
-        puzzleManager.status_Sigil = "Green";
+        inventoryManagerII.InventoryBool(isPickedUp);
+        inventoryManagerII.AddToInventoryList(itemName);
+        puzzleManager.statusSigil = "Green";
     }
 
     public string GiveSigilName(string pickUpName)

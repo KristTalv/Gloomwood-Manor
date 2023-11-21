@@ -19,14 +19,14 @@ public class Puz_Sword : MonoBehaviour
     // Scripts
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
-    private InventoryManager_II inventoryManager_II;
+    private InventoryManager_II inventoryManagerII;
     private MouseController mouseController;
 
     void Start()
     {
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
-        inventoryManager_II = FindObjectOfType<InventoryManager_II>();
+        inventoryManagerII = FindObjectOfType<InventoryManager_II>();
         mouseController = FindObjectOfType<MouseController>();
 
         statusSword = "Violet";
@@ -37,8 +37,8 @@ public class Puz_Sword : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            statusSword = puzzleManager.status_Sword;
-            statusSigil = puzzleManager.status_Sigil;
+            statusSword = puzzleManager.statusSword;
+            statusSigil = puzzleManager.statusSigil;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -49,10 +49,6 @@ public class Puz_Sword : MonoBehaviour
                     cursorSprite = mouseController.mouseScriptCursorName;
                     isClicked = true;
                 }
-                //if (isInRange == true && isClicked ==true)
-                //{
-                //    dialogManager.Listener("Just an old grave.");
-                //}
                 if (hit.transform.name != "Q_Sword & KnightGrave")
                 {
                     isClicked = false;
@@ -63,7 +59,7 @@ public class Puz_Sword : MonoBehaviour
     private void ExecuteSword()
     {
         statusSword = "Green";
-        puzzleManager.status_Sword = statusSword;
+        puzzleManager.statusSword = statusSword;
         string done_message = "The sword got off the statue! I'll take it.";
         dialogManager.Listener(done_message);
         PickUpItem();
@@ -78,8 +74,8 @@ public class Puz_Sword : MonoBehaviour
 
             if (statusSword == "Violet")
             {
-                puzzleManager.status_Sigil = "Yellow";
-                puzzleManager.status_Sword = "Yellow";
+                puzzleManager.statusSigil = "Yellow";
+                puzzleManager.statusSword = "Yellow";
 
                 message = diaPuzzSword.itemText;
                 dialogManager.Listener(message);
@@ -88,7 +84,7 @@ public class Puz_Sword : MonoBehaviour
             if (statusSigil == "Green" && cursorSprite == "Icon_Cursor_Symbol")
             {
                 ExecuteSword();
-                inventoryManager_II.UseItem("Sigil");
+                inventoryManagerII.UseItem("Sigil");
             }
         }
     }
@@ -101,8 +97,8 @@ public class Puz_Sword : MonoBehaviour
     {
         GiveSwordName(itemName);
         isPickedUp = true;
-        inventoryManager_II.InventoryBool(isPickedUp);
-        inventoryManager_II.AddToInventoryList(itemName);
+        inventoryManagerII.InventoryBool(isPickedUp);
+        inventoryManagerII.AddToInventoryList(itemName);
     }
     
     public string GiveSwordName(string pickUpName)

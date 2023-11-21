@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerController_III : MonoBehaviour
 {
     //Strings
-    public string status_LetLight;
+    public string statusLetLight;
     // Integers
-    private int firsttime = 0; //counter
+    private int firstTime = 0; //counter
     // Floats
     public float speedWalk = 1.0f; // movment speed
     private float heroLocation; // movement positions
@@ -20,7 +20,7 @@ public class PlayerController_III : MonoBehaviour
     // Vecrots
     private Vector3 moveClick; // mouse click to cordinates
     // Lists
-    List<Vector3> wayPoints = new List<Vector3>(); // List of way points witch player  walk on
+    List<Vector3> wayPointList = new List<Vector3>(); // List of way points witch player  walk on
     // Scripts
     public CameraController cameraController; // CameraController script. Camera needs to know when player pass trhoug collision --> camMoveBool = true
     private PuzzleManager puzzleManager;
@@ -37,18 +37,17 @@ public class PlayerController_III : MonoBehaviour
 
         foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
         {
-            wayPoints.Add(item.transform.position);
+            wayPointList.Add(item.transform.position);
         }
-        firsttime = 0; // counter will be 0 until player does anything.
+        firstTime = 0; // counter will be 0 until player does anything.
     }
     void Update()
     {
-
         heroLocation = gameObject.transform.position.x;
 
         if (Input.GetMouseButtonDown(0))
         {
-            status_LetLight = puzzleManager.status_LetLight;
+            statusLetLight = puzzleManager.statusLetLight;
             GetDecPoint();
         }
         if (heroDestination != heroLocation)
@@ -74,25 +73,26 @@ public class PlayerController_III : MonoBehaviour
                 isMoving = true;
                 animator.SetBool("Walking", true);
 
-                firsttime++; // Increment the action count
+                firstTime++; // Increment the action count
                 moveClick = hit.point;
                 moveClick.y = transform.position.y;
 
-                float smallestResult = 100000000;
+                //float smallestResult = 100000000;
+                float smallestResult = float.MaxValue;
                 int wayPointIndex = 0;
 
-                for (int i = 0; i < wayPoints.Count; i++) // Calculate the closest way point from mouseclick position
+                for (int i = 0; i < wayPointList.Count; i++) // Calculate the closest way point from mouseclick position
                                                           // --> that point becomes destination heroDestination
                 {
                     if (i >= 0)
                     {
-                        float resutl = wayPoints[i].x - hit.point.x;
+                        float resutl = wayPointList[i].x - hit.point.x;
                         if (Mathf.Abs(resutl) < smallestResult)
                         {
                             smallestResult = resutl;
                             wayPointIndex = i;
                         }
-                        if (wayPointIndex > 3 && status_LetLight == "Violet")
+                        if (wayPointIndex > 3 && statusLetLight == "Violet")
                         {
                             wayPointIndex = 3;
                             string message = "It's too dark in there";
@@ -116,7 +116,7 @@ public class PlayerController_III : MonoBehaviour
 
     private void WalkingOn()
     {
-        if (firsttime != 0) //if player has not done any actions, there is no movement
+        if (firstTime != 0) //if player has not done any actions, there is no movement
         {
             transform.position = Vector3.MoveTowards(transform.position, moveClick, speedWalk * Time.deltaTime);
         }
@@ -126,7 +126,7 @@ public class PlayerController_III : MonoBehaviour
         if (other.tag == "TriggerCam")
         {
             cameraController.wallName = other.gameObject.name;
-            cameraController.camMoveBool = true;
+            cameraController.isMoveCam = true;
         }
     }
 }

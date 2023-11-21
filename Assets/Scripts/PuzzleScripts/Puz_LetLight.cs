@@ -42,7 +42,7 @@ public class Puz_LetLight : MonoBehaviour
                     if(cursorSprite == "Icon_Cursor_Lighter")
                     {
                         statusLight = "Green";
-                        puzzleManager.status_LetLight = statusLight;
+                        puzzleManager.statusLetLight = statusLight;
                         diaPuzzLetLight= dialogLetLight2.dialogText;
                         dialogManager.Listener(diaPuzzLetLight);
                         sceneLights.SetActive(true);
@@ -56,8 +56,6 @@ public class Puz_LetLight : MonoBehaviour
                     }
                 }
             }
-        }
-        
-
+        }     
     }
 }

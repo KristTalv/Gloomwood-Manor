@@ -135,15 +135,15 @@ MonoBehaviour:
   useItemName: 
   slotItemName: 
   itemDialogText: 
-  cursor:
-  - {fileID: 2800000, guid: 8094323fd388331439c813c328a8d474, type: 3}
+  cursorTexture:
   - {fileID: 2800000, guid: 1631b651f3feb194a92406d64df6af5c, type: 3}
+  - {fileID: 2800000, guid: 8094323fd388331439c813c328a8d474, type: 3}
+  - {fileID: 2800000, guid: 5e2609b0cbea28f428aa9f41bdc15291, type: 3}
   - {fileID: 2800000, guid: 62c992cfa886fdf4c9cb7543f60f813b, type: 3}
   - {fileID: 2800000, guid: 86d6ed9d1d1e8184c9918010630152b5, type: 3}
   - {fileID: 2800000, guid: 98f911afac5bea6439174c936f7bda8f, type: 3}
-  - {fileID: 2800000, guid: 9aa13e5faa70e274b9ad6182b199d21b, type: 3}
   - {fileID: 2800000, guid: ba8a08d8b8ff2a54fa64875ede56504d, type: 3}
-  - {fileID: 2800000, guid: 5e2609b0cbea28f428aa9f41bdc15291, type: 3}
+  - {fileID: 2800000, guid: 9aa13e5faa70e274b9ad6182b199d21b, type: 3}
   itemScrObj:
   - {fileID: 11400000, guid: e529201eedf237a42a55d8e1616ea0b0, type: 2}
   - {fileID: 11400000, guid: bd9522d85140d334f866cc6802ed0e00, type: 2}

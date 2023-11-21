@@ -417,7 +417,6 @@ GameObject:
   - component: {fileID: 1352186135726602171}
   - component: {fileID: 4909982375603924417}
   - component: {fileID: 7625634362652582500}
-  - component: {fileID: 685674477}
   - component: {fileID: 685674476}
   - component: {fileID: 685674474}
   m_Layer: 0
@@ -475,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90bba2c8082ad82468874e29543208a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status_LetLight: 
   speedWalk: 2
   walkPathPoint:
   - {fileID: 0}
@@ -495,39 +495,6 @@ MonoBehaviour:
   - {fileID: 0}
   cameraController: {fileID: 0}
   animator: {fileID: 4909982375603924417}
-  status_LetLight: 
---- !u!114 &685674477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839789222161116417}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8fc91635b3a204db41c41893290ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedWalk: 10
-  walkPathPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cameraController: {fileID: 0}
-  status_LetLight: 
 --- !u!54 &685674476
 Rigidbody:
   m_ObjectHideFlags: 0

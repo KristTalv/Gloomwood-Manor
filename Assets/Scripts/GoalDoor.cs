@@ -9,12 +9,12 @@ public class GoalDoor : MonoBehaviour
     // Integer
     private int counter = 0;
     // Bools
-    public bool inRangeFinalDoor = false;
+    public bool isInRangeDoor = false;
     private bool isClicked = false;
     // ScriptableObjects
-    [SerializeField] private QuestDialogScrObj dia1;
-    [SerializeField] private QuestDialogScrObj dia2;
-    [SerializeField] private QuestDialogScrObj dia3;
+    [SerializeField] private QuestDialogScrObj dialogOption1;
+    [SerializeField] private QuestDialogScrObj dialogOption2;
+    [SerializeField] private QuestDialogScrObj dialogOption3;
     // Scripts
     private Puz_LightsOff puz_LightsOff;
     private DialogManager dialogManager;
@@ -38,7 +38,7 @@ public class GoalDoor : MonoBehaviour
                 {
                     isClicked = true;
                 }
-                if(hit.transform.name == gameObject.transform.name && inRangeFinalDoor == true)
+                if(hit.transform.name == gameObject.transform.name && isInRangeDoor == true)
                 {
                     isClicked = true;
                     GiveDialogExit();
@@ -53,8 +53,8 @@ public class GoalDoor : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        inRangeFinalDoor = true;
-        puz_LightsOff.GiveRangeBool(inRangeFinalDoor);
+        isInRangeDoor = true;
+        puz_LightsOff.GiveRangeBool(isInRangeDoor);
         if (isClicked == true)
         {
             GiveDialogExit();  
@@ -62,25 +62,25 @@ public class GoalDoor : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        inRangeFinalDoor = false;
-        puz_LightsOff.GiveRangeBool(inRangeFinalDoor);
+        isInRangeDoor = false;
+        puz_LightsOff.GiveRangeBool(isInRangeDoor);
     }
 
     private void GiveDialogExit()
     {
         if (counter == 0)
         {
-            message = dia1.dialogText;
+            message = dialogOption1.dialogText;
             dialogManager.Listener(message);
         }
         if (counter == 1)
         {
-            message = dia2.dialogText;
+            message = dialogOption2.dialogText;
             dialogManager.Listener(message);
         }
         if (counter >= 2)
         {
-            message = dia3.dialogText;
+            message = dialogOption3.dialogText;
             dialogManager.Listener(message);
         }
         counter++;

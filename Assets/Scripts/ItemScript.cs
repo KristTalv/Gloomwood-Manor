@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour
@@ -12,16 +9,13 @@ public class ItemScript : MonoBehaviour
 
     // Strings
     string itemName = "";
-    private string message;
     // Bools
     private bool isClicked = false;
     public bool isPickedUp = false;
-    private bool wasEdward = false;
     // Scriptable Objects
     public ItemScrObj itemObject;
     // Scripts
     private InventoryManager_II inventoryScript;
-    private Puz_Sigil puzz_Sigil;
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
 
@@ -30,7 +24,6 @@ public class ItemScript : MonoBehaviour
         itemName = itemObject.itemName;
         isPickedUp = false;
         inventoryScript = FindObjectOfType<InventoryManager_II>();
-        puzz_Sigil = FindObjectOfType<Puz_Sigil>();
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
     }
@@ -51,16 +44,12 @@ public class ItemScript : MonoBehaviour
                         isClicked = true;
                         if(hit.transform.name == "Sir_Edward's_grave") // Sigil item managment
                         {
-                            string status = puzzleManager.status_Sigil;
+                            string status = puzzleManager.statusSigil;
                             if (status == "Yellow")
                             {
                                 isClicked = true;
                             }
                         }
-                        //else
-                        //{
-                        //    isClicked = true;
-                        //}
                     }
                 }
                 else
@@ -77,10 +66,10 @@ public class ItemScript : MonoBehaviour
         {
             if (gameObject.transform.name == "Sir_Edward's_grave")
             {
-                string status = puzzleManager.status_Sigil;
+                string status = puzzleManager.statusSigil;
                 if (status == "Yellow")
                 {
-                    puzzleManager.status_Sigil = "Green";
+                    puzzleManager.statusSigil = "Green";
                     PickUpItem();
                 }
                 if (status == "Violet")
@@ -109,5 +98,4 @@ public class ItemScript : MonoBehaviour
         pickUpName = itemName;
         return pickUpName;
     }
-
 }

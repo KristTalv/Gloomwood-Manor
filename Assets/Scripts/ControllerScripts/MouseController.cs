@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseController : MonoBehaviour
@@ -7,30 +5,30 @@ public class MouseController : MonoBehaviour
     // String
     public string mouseScriptCursorName = "";
     // Bools
-    private bool red;
+    private bool isActive;
     // Sprites
-    [SerializeField] private Texture2D[] cursor;
+    [SerializeField] private Texture2D[] cursorTexture;
     [SerializeField] private Texture2D cursor_active;
     //[SerializeField] private Texture2D def_cursor;
 
     public void SetCursor(string name)
     {
         mouseScriptCursorName = name;
-        if (red == true && mouseScriptCursorName == "") 
+        if (isActive == true && mouseScriptCursorName == "") 
         {
             Cursor.SetCursor(cursor_active, Vector3.zero, CursorMode.ForceSoftware);
         }
-        if (red == false && mouseScriptCursorName == "")
+        if (isActive == false && mouseScriptCursorName == "")
         {
             Cursor.SetCursor(default, Vector3.zero, CursorMode.ForceSoftware);
         }
         else
         {
-            for (int i = 0; i < cursor.Length; i++)
+            for (int i = 0; i < cursorTexture.Length; i++)
             {
-                if (mouseScriptCursorName == cursor[i].name)
+                if (mouseScriptCursorName == cursorTexture[i].name)
                 {
-                    Cursor.SetCursor(cursor[i], Vector3.zero, CursorMode.ForceSoftware);
+                    Cursor.SetCursor(cursorTexture[i], Vector3.zero, CursorMode.ForceSoftware);
                 }
             }
         }
@@ -50,16 +48,15 @@ public class MouseController : MonoBehaviour
             {
                 if (hit.transform.tag == "quest" || hit.transform.tag == "Puzzle" || hit.transform.tag == "Item")
                 {
-                    red = true;
+                    isActive = true;
                     SetCursor(mouseScriptCursorName);
                 }
                 if (hit.transform.tag != "quest" && hit.transform.tag != "Puzzle" && hit.transform.tag != "Item")
                 {
-                    red = false;
+                    isActive = false;
                     SetCursor(mouseScriptCursorName);
                 }
             }
         }
     }
-
 }

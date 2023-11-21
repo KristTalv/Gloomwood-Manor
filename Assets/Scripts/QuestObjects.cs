@@ -1,53 +1,44 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System;
+
 
 public class QuestObjects : MonoBehaviour
 {
-
+    // Arrays
+    private float[] yCordinateArray = { 0f, 0f, 0f }; 
     // Strings
-    private string clickedObjName;
+    private string clickedObjectName;
     // Integers
     private int cauntStartDoor = 0;
-    // Floats
-    [SerializeField] private float y1_0 = 0.7f; 
-    [SerializeField] private float y1_1 = 0.6f; 
-    [SerializeField] private float y1_2 = 0.5f; 
     int graveIndex = 0; // For caunting the closest grave
     // GameObjects
     public GameObject dialogBox;
-    [SerializeField] private GameObject[] graveObject;
     // Bools
-    private bool talkBool = false;
-    private bool inRange = false;
+    private bool isTalking = false;
+    private bool isInRange = false;
     // ScriptableObjects
     [Header("Start Door")]
-    [SerializeField] private QuestDialogScrObj doorStuck1;
-    [SerializeField] private QuestDialogScrObj doorStuck2;
-    [SerializeField] private QuestDialogScrObj doorStuck3;
+    [SerializeField] private QuestDialogScrObj[] doorDialogOption;
     // RightSideGraves
     [Header("Right Side Graves")]
-    [SerializeField] private QuestDialogScrObj graveEmma1;
-    [SerializeField] private QuestDialogScrObj graveRichard1;
-    [SerializeField] private QuestDialogScrObj graveDusty;
+    [SerializeField] private QuestDialogScrObj graveDialogEmma;
+    [SerializeField] private QuestDialogScrObj graveDialogRichard;
+    [SerializeField] private QuestDialogScrObj graveDialogDusty;
     // LeftSideGraves
     [Header("Left Side Graves")]
-    [SerializeField] private QuestDialogScrObj graveWilamm;
-    [SerializeField] private QuestDialogScrObj graveSirEdward;
-    [SerializeField] private QuestDialogScrObj graveRamsey;
+    [SerializeField] private QuestDialogScrObj graveDialogWilamm;
+    [SerializeField] private QuestDialogScrObj graveDialogSirEdward;
+    [SerializeField] private QuestDialogScrObj graveDialogRamsey;
     // Lists
-    List<float> y1 = new List<float>();
-    List<QuestDialogScrObj> graveDialogOptio = new List<QuestDialogScrObj>();
-    List<QuestDialogScrObj> graveLeftDialogOptio = new List<QuestDialogScrObj>();
+    List<QuestDialogScrObj> graveRightDialogOptionList = new List<QuestDialogScrObj>();
+    List<QuestDialogScrObj> graveLeftDialogOptionList = new List<QuestDialogScrObj>(); //tässä
     // Vector 3
-    private Vector3 clickPos;
+    private Vector3 clickPosVector3;
     // Scripts
     private PuzzleManager puzzleManager;
     private DialogManager dialogManager;
     private Puz_Sigil puz_Sigil;
+    private Config config;
 
     private void Start()
     {
@@ -55,23 +46,24 @@ public class QuestObjects : MonoBehaviour
         puzzleManager = FindObjectOfType<PuzzleManager>(); // Puzzle manager is awailable now
         dialogManager = FindObjectOfType<DialogManager>();
         puz_Sigil = FindObjectOfType<Puz_Sigil>();
+        config = FindObjectOfType<Config>();
 
-        y1.Add(y1_0);
-        y1.Add(y1_1);
-        y1.Add(y1_2);
+        for (int i = 0; i < yCordinateArray.Length; i++)
+        {
+            yCordinateArray[i] = config.yCordinateArray[i];
+        }
 
-        graveDialogOptio.Add(graveDusty);
-        graveDialogOptio.Add(graveRichard1);
-        graveDialogOptio.Add(graveEmma1);
+        graveRightDialogOptionList.Add(graveDialogDusty);
+        graveRightDialogOptionList.Add(graveDialogRichard);
+        graveRightDialogOptionList.Add(graveDialogEmma);
 
-        graveLeftDialogOptio.Add(graveWilamm);
-        graveLeftDialogOptio.Add(graveSirEdward);
-        graveLeftDialogOptio.Add(graveRamsey);
+        graveLeftDialogOptionList.Add(graveDialogWilamm);
+        graveLeftDialogOptionList.Add(graveDialogSirEdward);
+        graveLeftDialogOptionList.Add(graveDialogRamsey);
     }
 
     void Update()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //getting information of mouse position related to camera
         RaycastHit hit;
 
@@ -81,75 +73,66 @@ public class QuestObjects : MonoBehaviour
             {
                 if (hit.transform.gameObject.name == gameObject.name) // if user clkicks a "quest" object, questBoolean is true
                 {
-                    clickedObjName = hit.transform.name;
-                    clickPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-                    talkBool = true;
-                    if (inRange == true)
+                    clickedObjectName = hit.transform.name;
+                    clickPosVector3 = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                    isTalking = true;
+                    if (isInRange == true)
                     {
                         GiveDialog();
                     }
                 }
                 else
                 {
-                    talkBool = false;
+                    isTalking = false;
                 }               
             }
         }
-
     }
     private void OnTriggerEnter(Component other)
     {
-        inRange = true;
+        isInRange = true;
         GiveDialog(); // Takes care of dialog box and dialog options
     }
     private void OnTriggerExit(Collider other) // exiting makes dialog box unvisable and sets questBoolean to false --> re-enttering trigger area wont make 
                                                // dialog box visable
     {
         dialogBox.SetActive(false);
-        talkBool = false;
-        inRange = false;
+        isTalking = false;
+        isInRange = false;
     }
 
     private void GiveDialog()
     {
-
         string message;
-        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 0)
+        for (int i = 0; i < doorDialogOption.Length; i++)
         {
-            message = doorStuck1.dialogText;
-            dialogManager.Listener(message);
-        }
-        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor == 1)
-        {
-            message = doorStuck2.dialogText;
-            dialogManager.Listener(message);
-        }
-        if (clickedObjName == "Door_Start" && talkBool == true && cauntStartDoor >= 2)
-        {
-            message = doorStuck3.dialogText;
-            dialogManager.Listener(message);
-        }
-        if (clickedObjName == "RightSideGraves" && talkBool == true && inRange == true)
-        {
-            float smallestResult = 100000000;
-            for (int i = 0; i < y1.Count; i++)
+            if(i == cauntStartDoor)
             {
-                float resutl = y1[i] - clickPos.y;
+                message = doorDialogOption[i].dialogText;
+                dialogManager.Listener(message);
+            }
+        }
+        if (clickedObjectName == "RightSideGraves" && isTalking == true && isInRange == true)
+        {
+            float smallestResult = float.MaxValue;
+            for (int i = 0; i < yCordinateArray.Length; i++)
+            {
+                float resutl = yCordinateArray[i] - clickPosVector3.y;
                 if (Mathf.Abs(resutl) < smallestResult)
                 {
                     smallestResult = resutl;
                     graveIndex = i;
                 }
             }
-            message = graveDialogOptio[graveIndex].dialogText;
+            message = graveRightDialogOptionList[graveIndex].dialogText;
             dialogManager.Listener(message);
         }
-        if (clickedObjName == "LeftSideGraves" && talkBool == true && inRange == true)
+        if (clickedObjectName == "LeftSideGraves" && isTalking == true && isInRange == true)
         {
-            float smallestResult = 100000000;
-            for (int i = 0; i < y1.Count; i++)
+            float smallestResult = float.MaxValue;
+            for (int i = 0; i < yCordinateArray.Length; i++)
             {
-                float resutl = y1[i] - clickPos.y;
+                float resutl = yCordinateArray[i] - clickPosVector3.y;
                 if (Mathf.Abs(resutl) < smallestResult)
                 {
                     smallestResult = resutl;
@@ -158,20 +141,21 @@ public class QuestObjects : MonoBehaviour
             }
             if (graveIndex == 1 )
             {
-                string status = puzzleManager.status_Sigil;
+                string status = puzzleManager.statusSigil;
                 if(status == "Yellow")
                 {
                     puz_Sigil.PickUpSigil();
                 }
             }
-            message = graveLeftDialogOptio[graveIndex].dialogText;
+            message = graveLeftDialogOptionList[graveIndex].dialogText;
             dialogManager.Listener(message);
         }
-        if (talkBool == true)
+        if (isTalking == true)
         {
             dialogBox.SetActive(true);
             UpDateCaunt();
-        }       
+        }
+        UpDateCaunt();
     }
 
     private void UpDateCaunt()
