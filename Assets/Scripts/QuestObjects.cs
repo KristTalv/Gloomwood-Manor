@@ -31,7 +31,7 @@ public class QuestObjects : MonoBehaviour
     [SerializeField] private QuestDialogScrObj graveDialogRamsey;
     // Lists
     List<QuestDialogScrObj> graveRightDialogOptionList = new List<QuestDialogScrObj>();
-    List<QuestDialogScrObj> graveLeftDialogOptionList = new List<QuestDialogScrObj>(); //tässä
+    List<QuestDialogScrObj> graveLeftDialogOptionList = new List<QuestDialogScrObj>(); 
     // Vector 3
     private Vector3 clickPosVector3;
     // Scripts

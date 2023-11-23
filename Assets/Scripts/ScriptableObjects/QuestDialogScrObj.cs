@@ -4,6 +4,6 @@ using UnityEngine;
 public class QuestDialogScrObj : ScriptableObject
 {
     public string dialogName;
-    [SerializeField, TextArea]
+    [SerializeField, TextArea(10, 100)]
     public string dialogText;
 }

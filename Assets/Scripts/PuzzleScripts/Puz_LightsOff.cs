@@ -92,8 +92,9 @@ public class Puz_LightsOff : MonoBehaviour
         }
         if(isTimeOut == true && isGameWon == false)
         {
-            gameOverScreen.SetActive(true);
-            isTimeOut = false;
+            //gameOverScreen.SetActive(true);
+            //isTimeOut = false;
+            puzzleManager.statusLightsOff = "Red";
         }
     }
 
@@ -102,8 +103,9 @@ public class Puz_LightsOff : MonoBehaviour
         string goodToGo = puzzleManager.statusSword;
         if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green")
         {
-            endScreen.SetActive(true);
-            isGameWon = true;
+            //endScreen.SetActive(true);
+            //isGameWon = true;
+            puzzleManager.statusLightsOff = "Green";
         }
     }
 
