@@ -68,7 +68,7 @@ public class PlayerController_III : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag != "UISlot" && hit.transform.tag != "UI")
+            if (hit.transform.tag != "UISlot" && hit.transform.tag != "UI" && cameraController.isMoveCam == false)
             {
                 isMoving = true;
                 animator.SetBool("Walking", true);

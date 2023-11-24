@@ -20,13 +20,16 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] private GameObject screenImage;
 
     [SerializeField] private QuestDialogScrObj[] screenStartText;
+    [SerializeField] private QuestDialogScrObj[] jonathanDialogText;
     [SerializeField] private QuestDialogScrObj[] screenGameOverText;
     [SerializeField] private QuestDialogScrObj[] screenVictoryText;
 
+    private DialogManager dialogManager;
+
     void Start()
     {
+        dialogManager = FindObjectOfType<DialogManager>();
         jonathan.SetActive(false);
-        //uiCanvas.SetActive(false);
         storyText = screenStartText[0].dialogText;
         DisplayText(storyText);
     }
@@ -70,6 +73,8 @@ public class ScreenManager : MonoBehaviour
             }
             else if (counter >= screenStartText.Length)
             {
+                string message = jonathanDialogText[0].dialogText;
+                dialogManager.Listener(message);
                 jonathan.SetActive(true);
                 counter = 0;
                 screenImage.SetActive(false);

@@ -569,8 +569,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.514343, y: 23.421364, z: 17.996042}
-  m_Center: {x: -1.4420152, y: -0.81461537, z: 0.5223638}
+  m_Size: {x: 10.242042, y: 13.430912, z: 18.566559}
+  m_Center: {x: 2.1941464, y: -5.8098345, z: 0.8076221}
 --- !u!1 &17398751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,8 +1409,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06330672, y: 0.020000013, z: 0.01980466}
-  m_Center: {x: -0.032900322, y: -0.00023953148, z: 0.009973358}
+  m_Size: {x: 0.05311595, y: 0.020000013, z: 0.01980466}
+  m_Center: {x: -0.027804928, y: -0.00023953148, z: 0.009973358}
 --- !u!114 &213064422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,6 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusSword: 
   useItem: Sigil
+  graveSwordObject: {fileID: 2144729667}
   diaPuzzSword: {fileID: 11400000, guid: d2be4b998b6bb5347bf49a2d802cde41, type: 2}
 --- !u!1 &430659047
 GameObject:
@@ -2186,7 +2187,7 @@ BoxCollider:
   m_GameObject: {fileID: 498913541}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.9907513, y: 1.6221097, z: 2.542831}
   m_Center: {x: -0.049767494, y: 0.31105483, z: 0.1990745}
@@ -3038,6 +3039,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6017199, y: 4.9837646, z: 2.7659984}
   m_Center: {x: -4.0042996, y: 1.9918818, z: -0.8829992}
+--- !u!1 &649382281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6039363287985407521, guid: 684c58f37a9e49c4aa23699f771a656a, type: 3}
+  m_PrefabInstance: {fileID: 818329170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &662474059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4875,6 +4881,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8536eca6cd2372d498e6e7b94e611e51, type: 3}
   m_PrefabInstance: {fileID: 1077563201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082762156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 051629b68ad9390478dbc54ea661eb8f, type: 3}
+  m_PrefabInstance: {fileID: 1919721639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1098454880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Statue_Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13da4dac842daae4b82f0009f8949f8b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13da4dac842daae4b82f0009f8949f8b, type: 3}
 --- !u!1 &1275842715
@@ -5887,7 +5902,7 @@ BoxCollider:
   m_GameObject: {fileID: 1325801871}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.9907513, y: 1.6221097, z: 2.542831}
   m_Center: {x: -0.049767494, y: 0.31105483, z: 0.1990745}
@@ -6563,6 +6578,8 @@ MonoBehaviour:
   screenStartText:
   - {fileID: 11400000, guid: 7a15c0e9b88b1534e8ec10316fdff339, type: 2}
   - {fileID: 11400000, guid: bb8b2640eab528f40ad8e5e882b4c8e7, type: 2}
+  jonathanDialogText:
+  - {fileID: 11400000, guid: 004279799288efe499f3a851a313cf0f, type: 2}
   screenGameOverText:
   - {fileID: 11400000, guid: 40a903085957a4648b8ff080edf8021f, type: 2}
   - {fileID: 11400000, guid: 0e08f8366c8704e43895690794d35894, type: 2}
@@ -6643,8 +6660,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.2948294, z: 7.600964}
-  m_Center: {x: 0, y: 0.6216389, z: 0.5974829}
+  m_Size: {x: 0.23196983, y: 4.2948294, z: 7.600964}
+  m_Center: {x: -0.38401508, y: 0.6216388, z: 0.5974829}
 --- !u!1001 &1742785625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6926,7 +6943,7 @@ BoxCollider:
   m_GameObject: {fileID: 1787728910}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.9907513, y: 1.6221097, z: 2.542831}
   m_Center: {x: -0.049767494, y: 0.31105483, z: 0.1990745}
@@ -7246,8 +7263,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.2948294, z: 7.600964}
-  m_Center: {x: 0, y: 0.6216389, z: 0.5974829}
+  m_Size: {x: 0.34168816, y: 4.2948294, z: 7.600964}
+  m_Center: {x: 0.32915592, y: 0.6216388, z: 0.5974829}
 --- !u!1 &1862615715
 GameObject:
   m_ObjectHideFlags: 0
@@ -7292,9 +7309,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1865992672}
   - component: {fileID: 1865992673}
+  - component: {fileID: 1865992674}
   m_Layer: 0
   m_Name: Q_LetLight
-  m_TagString: Untagged
+  m_TagString: Puzzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7328,9 +7346,25 @@ MonoBehaviour:
   statusLight: 
   diaPuzzLetLight: 
   sceneLights: {fileID: 824989948}
-  flameParticle: {fileID: 855052015}
+  flameParticleArray:
+  - {fileID: 855052015}
+  - {fileID: 649382281}
+  - {fileID: 2019516204}
   dialogLetLight1: {fileID: 11400000, guid: df43298090965f34caa2aa6c2d1cf8b5, type: 2}
   dialogLetLight2: {fileID: 11400000, guid: cb26ef50d3b3df743a8432c2324fc092, type: 2}
+--- !u!65 &1865992674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865992671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.753849, y: 1.6047783, z: 2.8748112}
+  m_Center: {x: 30.632002, y: 0.30238914, z: -8.255217}
 --- !u!1 &1891312493
 GameObject:
   m_ObjectHideFlags: 0
@@ -7481,7 +7515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 051629b68ad9390478dbc54ea661eb8f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051629b68ad9390478dbc54ea661eb8f, type: 3}
@@ -7952,12 +7986,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusLightsOff: 
   timeLimit: 30
-  vfxParticle: {fileID: 855052015}
   sceneLight: {fileID: 824989948}
   startLight: {fileID: 1188797430}
   sceneLightEnding: {fileID: 4379429}
   endScreen: {fileID: 0}
   gameOverScreen: {fileID: 0}
+  statueSwordObject: {fileID: 1082762156}
   dialog1: {fileID: 11400000, guid: 922acf0ba86c7d54481a7505d6399f08, type: 2}
   dialog2: {fileID: 11400000, guid: 697de359445e8bb4c86693a2cb366507, type: 2}
 --- !u!1 &2007339113
@@ -8198,6 +8232,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014829272}
   m_CullTransparentMesh: 1
+--- !u!1 &2019516204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6039363287985407521, guid: 684c58f37a9e49c4aa23699f771a656a, type: 3}
+  m_PrefabInstance: {fileID: 1927185362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2023574805
 GameObject:
   m_ObjectHideFlags: 0
@@ -8619,6 +8658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0770c1b8548746498b066bea40c43e7, type: 3}
+--- !u!1 &2144729667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 051629b68ad9390478dbc54ea661eb8f, type: 3}
+  m_PrefabInstance: {fileID: 676361563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1533853206705463420
 PrefabInstance:
   m_ObjectHideFlags: 0

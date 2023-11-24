@@ -14,6 +14,8 @@ public class Puz_Sword : MonoBehaviour
     private bool isClicked = false;
     private bool isPickedUp = false;
     private bool isInRange = false;
+    // Game Objects
+    [SerializeField] private GameObject graveSwordObject;
     // ScribtableObjects
     [SerializeField] private ItemScrObj diaPuzzSword;
     // Scripts
@@ -48,8 +50,17 @@ public class Puz_Sword : MonoBehaviour
                 {
                     cursorSprite = mouseController.mouseScriptCursorName;
                     isClicked = true;
+                    if(isInRange == true && puzzleManager.statusSigil == "Green" && cursorSprite == "Icon_Cursor_Symbol")
+                    {
+                        ExecuteSword();
+                    }
+                    else if (isInRange == true)
+                    {
+                        string message = diaPuzzSword.itemText;
+                        dialogManager.Listener(message);
+                    }
                 }
-                if (hit.transform.name != "Q_Sword & KnightGrave")
+                else if (hit.transform.name != "Q_Sword & KnightGrave")
                 {
                     isClicked = false;
                 }
@@ -58,6 +69,7 @@ public class Puz_Sword : MonoBehaviour
     }
     private void ExecuteSword()
     {
+        graveSwordObject.SetActive(false);
         statusSword = "Green";
         puzzleManager.statusSword = statusSword;
         string done_message = "The sword got off the statue! I'll take it.";

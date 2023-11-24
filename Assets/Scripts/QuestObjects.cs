@@ -153,7 +153,6 @@ public class QuestObjects : MonoBehaviour
         if (isTalking == true)
         {
             dialogBox.SetActive(true);
-            UpDateCaunt();
         }
         UpDateCaunt();
     }

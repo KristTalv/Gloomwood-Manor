@@ -21,12 +21,12 @@ public class Puz_LightsOff : MonoBehaviour
     private bool isTimeOut = false;
     private bool isGameWon = false;
     // Game Object
-    [SerializeField] private GameObject vfxParticle;
     [SerializeField] private GameObject sceneLight;
     [SerializeField] private GameObject startLight;
     [SerializeField] private GameObject sceneLightEnding;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject statueSwordObject;
     // Scriptable Objects
     [SerializeField] private QuestDialogScrObj dialog1;
     [SerializeField] private QuestDialogScrObj dialog2;
@@ -36,6 +36,7 @@ public class Puz_LightsOff : MonoBehaviour
     private GoalDoor goalDoor;
     private MouseController mouseController;
     private InventoryManager_II inventoryManagerII;
+    private Puz_LetLight puz_LetLight;
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class Puz_LightsOff : MonoBehaviour
         goalDoor = FindObjectOfType<GoalDoor>();
         mouseController = FindObjectOfType<MouseController>();
         inventoryManagerII = FindObjectOfType<InventoryManager_II>();
+        puz_LetLight = FindObjectOfType<Puz_LetLight>();
 
         puzzleManager.statusLightsOff = statusLightsOff;
     }
@@ -92,8 +94,6 @@ public class Puz_LightsOff : MonoBehaviour
         }
         if(isTimeOut == true && isGameWon == false)
         {
-            //gameOverScreen.SetActive(true);
-            //isTimeOut = false;
             puzzleManager.statusLightsOff = "Red";
         }
     }
@@ -103,7 +103,6 @@ public class Puz_LightsOff : MonoBehaviour
         string goodToGo = puzzleManager.statusSword;
         if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green")
         {
-            //endScreen.SetActive(true);
             isGameWon = true;
             puzzleManager.statusLightsOff = "Green";
             
@@ -125,7 +124,8 @@ public class Puz_LightsOff : MonoBehaviour
 
                 StartCounter();
 
-                vfxParticle.SetActive(false);
+                statueSwordObject.SetActive(true);
+                puz_LetLight.LightSwitch(false);
                 sceneLight.SetActive(false);
                 startLight.SetActive(false);
                 sceneLightEnding.SetActive(true);
