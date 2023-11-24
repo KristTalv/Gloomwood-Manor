@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: GameOverText1
   m_EditorClassIdentifier: 
   dialogName: GameOver1
-  dialogText: "V\xE4l\xE4ht\xE4v\xE4\xE4 kipua. Viimeinen asia, mit\xE4 Jonathan
-    tiesi oli ett\xE4 h\xE4ne ei voinut huutaa tai liikkua. Vahvat k\xE4det tarttuivat
-    Jonathanin jalkoihin ja kiskoivat h\xE4nt\xE4 syvemm\xE4lle kryptan sy\xF6vereihin."
+  dialogText: Flash of pain strikes Jonathan! The last thing he knew was that he
+    was unable to move or shout.

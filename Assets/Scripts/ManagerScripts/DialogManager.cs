@@ -12,4 +12,8 @@ public class DialogManager : MonoBehaviour
         dialogBox.SetActive(true);
         return message;
     }
+    public void DisableDialogBox()
+    {
+        dialogBox.SetActive(false);
+    }
 }

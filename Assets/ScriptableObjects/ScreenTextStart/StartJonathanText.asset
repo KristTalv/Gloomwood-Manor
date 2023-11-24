@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StartJonathanText
   m_EditorClassIdentifier: 
   dialogName: Intro3
-  dialogText: "Mik\xE4 se oli!? Onko joku ovella?"
+  dialogText: What was that! Is there someone at the door?

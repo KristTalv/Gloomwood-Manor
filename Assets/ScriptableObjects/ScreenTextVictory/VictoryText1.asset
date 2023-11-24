@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VictoryText1
   m_EditorClassIdentifier: 
   dialogName: Outro1
-  dialogText: "Jonathan kiirehti ulos kryptasta tuntein luissaan, ett\xE4 h\xE4n
-    oli v\xE4ist\xE4nyt jotain karmeaa aivan t\xE4p\xE4r\xE4sti."
+  dialogText: Jonathan rushed out of the crypt feeling in his bones the chilling
+    realization of him just barely evading something perillous.

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebc633dd97bde53499445865f7fb96c8, type: 3}
-  m_Name: VictoryText2
+  m_Name: VictoryText3
   m_EditorClassIdentifier: 
   dialogName: Outro2
-  dialogText: Nefariously red dawn was greeting him at those early hours when Jonathan
-    made his way back to Gloomwood Manor heart heavy and filled with doubt.
+  dialogText: Now he had confirmation someone was trying to stop him from seeking
+    the truth...

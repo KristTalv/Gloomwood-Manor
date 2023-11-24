@@ -9,22 +9,26 @@ public class ScreenManager : MonoBehaviour
     private int counter = 0;
     private string storyText = "";
 
-    public bool isScreenStrart = true;
-    public bool isScreenGameOver = false;
-    public bool isScreenVictory = false;
-    public bool[] isScreenOn = {true, false, false};
+    //public bool isScreenStrart = true;
+    //public bool isScreenGameOver = false;
+    //public bool isScreenVictory = false;
+    public bool[] isScreenOnArray = {true, false, false};
 
+    [SerializeField] private GameObject jonathan;
+    //[SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject blackScreen;
-
     [SerializeField] private GameObject screenImage;
+
     [SerializeField] private QuestDialogScrObj[] screenStartText;
     [SerializeField] private QuestDialogScrObj[] screenGameOverText;
     [SerializeField] private QuestDialogScrObj[] screenVictoryText;
 
     void Start()
     {
-            storyText = screenStartText[0].dialogText;
-            DisplayText(storyText);
+        jonathan.SetActive(false);
+        //uiCanvas.SetActive(false);
+        storyText = screenStartText[0].dialogText;
+        DisplayText(storyText);
     }
 
     // Update is called once per frame
@@ -44,9 +48,9 @@ public class ScreenManager : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Screen")
                 {
-                    for (int i = 0; i < isScreenOn.Length; i++)
+                    for (int i = 0; i < isScreenOnArray.Length; i++)
                     {
-                        if(isScreenOn[i] == true)
+                        if(isScreenOnArray[i] == true)
                         {
                             UpdateScreen(i);
                         }
@@ -66,46 +70,45 @@ public class ScreenManager : MonoBehaviour
             }
             else if (counter >= screenStartText.Length)
             {
+                jonathan.SetActive(true);
                 counter = 0;
                 screenImage.SetActive(false);
-                isScreenOn[index] = false;
+                isScreenOnArray[index] = false;
             }
         }
         else if (index > 0) // Game Over and Vicotry
         {
             if (index == 1)
             {
-                if (counter < screenGameOverText.Length)
+                if (counter < screenGameOverText.Length) // Game Over
                 {
                     storyText = screenGameOverText[counter].dialogText;
-                    DisplayText(storyText);
-                    screenImage.SetActive(true);
+                    SetScreen();
                 }
-                else if (counter >= screenStartText.Length)
+                else if (counter >= screenGameOverText.Length)
                 {
                     counter = 0;
-                    isScreenOn[index] = false;
+                    isScreenOnArray[index] = false;
                     ReloadScene();
                 }
             }
             else if (index == 2)
             {
-                if (counter < screenVictoryText.Length)
+                if (counter < screenVictoryText.Length) // Vicotry
                 {
                     storyText = screenVictoryText[counter].dialogText;
-                    DisplayText(storyText);
-                    screenImage.SetActive(true);
+                    SetScreen();
                 }
-                else if (counter >= screenStartText.Length)
+                else if (counter >= screenVictoryText.Length)
                 {
                     counter = 0;
                     screenImage.SetActive(false);
-                    isScreenOn[index] = false;
+                    isScreenOnArray[index] = false;
+                    blackScreen.SetActive(true);
+                    Application.Quit();
                 }
-
             }
         }
-
     }
     private void SetScreen()
     {
@@ -115,6 +118,7 @@ public class ScreenManager : MonoBehaviour
 
     public void StarGameOver()
     {
+        isScreenOnArray[1] = true;
         storyText = screenGameOverText[counter].dialogText;
         DisplayText(storyText);
         screenImage.SetActive(true);
@@ -122,6 +126,7 @@ public class ScreenManager : MonoBehaviour
 
     public void StartVictory()
     {
+        isScreenOnArray[2] = true;
         storyText = screenVictoryText[counter].dialogText;
         DisplayText(storyText);
         screenImage.SetActive(true);

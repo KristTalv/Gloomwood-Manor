@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StartText2
   m_EditorClassIdentifier: 
   dialogName: Intro2
-  dialogText: "H\xE4n ei aavistanut, ettei h\xE4n ollut yksin..\n"
+  dialogText: He was not aware that he had company...

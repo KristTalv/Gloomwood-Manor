@@ -19,6 +19,7 @@ public class PuzzleManager : MonoBehaviour
     private Puz_Sword puzzSword;
     private Puz_LightsOff puzzLightsOff;
     private ScreenManager screenManager;
+    private DialogManager dialogManager;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class PuzzleManager : MonoBehaviour
         puzzSword = FindObjectOfType<Puz_Sword>();
         puzzLightsOff = FindObjectOfType<Puz_LightsOff>();
         screenManager = FindObjectOfType<ScreenManager>();
+        dialogManager = FindObjectOfType<DialogManager>();
 
         statusLetLight = puzzLetLight.statusLight;
         statusSigil = puzzSigil.statusSigil;
@@ -43,16 +45,17 @@ public class PuzzleManager : MonoBehaviour
     {
         if(statusLightsOff == "Red" && !isGameOverCalled)
         {
-            screenManager.isScreenOn[1] = true;
-            screenManager.isScreenGameOver = true;
+            dialogManager.DisableDialogBox();
+            screenManager.isScreenOnArray[1] = true;
+            //screenManager.isScreenGameOver = true;
             screenManager.StarGameOver(); // Shows Game Over Screen
             isGameOverCalled = true;
 
         }
         if(statusLightsOff == "Green" && !isVictoryCalled)
         {
-            screenManager.isScreenVictory = true;
-            screenManager.isScreenOn[2] = true;
+            //screenManager.isScreenVictory = true;
+            screenManager.isScreenOnArray[2] = true;
             screenManager.StartVictory(); // Shows Victory Screen
             isVictoryCalled = true;
         }

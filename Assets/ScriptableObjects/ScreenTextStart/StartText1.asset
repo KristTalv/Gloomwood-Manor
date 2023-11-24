@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StartText1
   m_EditorClassIdentifier: 
   dialogName: Intro1
-  dialogText: "Jonathan Gordon oli etsiess\xE4\xE4n totuutta, h\xE4nen vaimonsa salaper\xE4isest\xE4
-    kuolemasta, l\xF6yt\xE4nyt johtolankoja, mitk\xE4 olivat johdattaneet h\xE4net
-    perheens\xE4 hyl\xE4tylle kryptalle."
+  dialogText: Jonathan Gordon has been seeking the truth about his wife's mysterious
+    passing away and followed a trail of clues that led him to his family old abandoned
+    crypt.

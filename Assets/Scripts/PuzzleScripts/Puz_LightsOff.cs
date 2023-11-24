@@ -104,8 +104,9 @@ public class Puz_LightsOff : MonoBehaviour
         if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green")
         {
             //endScreen.SetActive(true);
-            //isGameWon = true;
+            isGameWon = true;
             puzzleManager.statusLightsOff = "Green";
+            
         }
     }
 
