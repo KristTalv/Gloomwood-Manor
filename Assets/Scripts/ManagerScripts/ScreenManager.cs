@@ -6,29 +6,38 @@ using TMPro;
 
 public class ScreenManager : MonoBehaviour
 {
+    // Integers
     private int counter = 0;
+    //Floats
+    [SerializeField] private float redFlasTime;
+    // Strings
     private string storyText = "";
-
-    //public bool isScreenStrart = true;
-    //public bool isScreenGameOver = false;
-    //public bool isScreenVictory = false;
+    // Bools
     public bool[] isScreenOnArray = {true, false, false};
-
+    // GameObjects
     [SerializeField] private GameObject jonathan;
     //[SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject blackScreen;
+    [SerializeField] private GameObject redScreen;
     [SerializeField] private GameObject screenImage;
-
+    // QuestDialogScrOj
     [SerializeField] private QuestDialogScrObj[] screenStartText;
     [SerializeField] private QuestDialogScrObj[] jonathanDialogText;
     [SerializeField] private QuestDialogScrObj[] screenGameOverText;
     [SerializeField] private QuestDialogScrObj[] screenVictoryText;
-
+    // SFX
+    [SerializeField] private AudioSource slashAudio;
+    // Scripts
     private DialogManager dialogManager;
+    private InventoryManager_II inventoryManager;
 
     void Start()
     {
+        blackScreen.SetActive(false);
+        redScreen.SetActive(false);
+
         dialogManager = FindObjectOfType<DialogManager>();
+        inventoryManager = FindObjectOfType<InventoryManager_II>();
         jonathan.SetActive(false);
         storyText = screenStartText[0].dialogText;
         DisplayText(storyText);
@@ -79,6 +88,7 @@ public class ScreenManager : MonoBehaviour
                 counter = 0;
                 screenImage.SetActive(false);
                 isScreenOnArray[index] = false;
+                inventoryManager.GiveStartItems();
             }
         }
         else if (index > 0) // Game Over and Vicotry
@@ -123,14 +133,30 @@ public class ScreenManager : MonoBehaviour
 
     public void StarGameOver()
     {
+        
+        StartCoroutine(RedFlash());
+
+        inventoryManager.ClearItems();
+        jonathan.SetActive(false);
         isScreenOnArray[1] = true;
         storyText = screenGameOverText[counter].dialogText;
         DisplayText(storyText);
         screenImage.SetActive(true);
     }
+    IEnumerator RedFlash()
+    {
+        slashAudio.Play();
+        redScreen.SetActive(true);
+        yield return new WaitForSeconds(redFlasTime);
+        redScreen.SetActive(false);
+        Debug.Log("loppu");
+
+    }
 
     public void StartVictory()
     {
+        inventoryManager.ClearItems();
+        jonathan.SetActive(false);
         isScreenOnArray[2] = true;
         storyText = screenVictoryText[counter].dialogText;
         DisplayText(storyText);
@@ -138,6 +164,8 @@ public class ScreenManager : MonoBehaviour
     }
     private void DisplayText(string storyText)
     {
+        screenImage.transform.GetChild(0).gameObject.SetActive(false);
+        screenImage.transform.GetChild(0).gameObject.SetActive(true);
         screenImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = storyText;
         counter++;
     }

@@ -14,6 +14,8 @@ public class InvSlot : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTexture;
     // Scriptable Objects
     [SerializeField] private ItemScrObj[] itemScrObj;
+    [SerializeField] private QuestDialogScrObj sigilDialogInventory;
+    [SerializeField] private QuestDialogScrObj swordDialogInventory;
     // Scripts
     private InventoryManager_II inventoryManager;
     private DialogManager dialogManager;
@@ -48,7 +50,7 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))//Right click will inspect the item
+        if (Input.GetMouseButtonDown(1))//Right click will inspect the item
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -59,7 +61,20 @@ public class InvSlot : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
                     {
-                        string message = this.itemDialogText;
+                        Debug.Log(this.slotItemName);
+                        string message = "";
+                        if (this.slotItemName == "Sigil")
+                        {
+                            message = sigilDialogInventory.dialogText;
+                        }
+                        else if (this.slotItemName == "Sword")
+                        {
+                            message = swordDialogInventory.dialogText;
+                        }
+                        else
+                        {                          
+                            message = this.itemDialogText;
+                        }
                         dialogManager.Listener(message);
                     }
                 }

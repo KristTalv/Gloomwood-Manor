@@ -101,11 +101,10 @@ public class Puz_LightsOff : MonoBehaviour
     private void CheckTheDoor()
     {
         string goodToGo = puzzleManager.statusSword;
-        if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green")
+        if(cursorName == "Icon_Cursor_SkeletonKey" && goodToGo == "Green" && statusLightsOff == "Yellow")
         {
             isGameWon = true;
-            puzzleManager.statusLightsOff = "Green";
-            
+            puzzleManager.statusLightsOff = "Green";     
         }
     }
 

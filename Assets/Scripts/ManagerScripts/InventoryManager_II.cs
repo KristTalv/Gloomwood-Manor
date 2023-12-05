@@ -19,9 +19,9 @@ public class InventoryManager_II : MonoBehaviour
     // Lists
     List<string> pickedUpNameList = new List<string>(); // List of picked up items
 
-    private void Start()
+    public void GiveStartItems()
     {
-        for (int i = 0; i < begingItemScrObj.Length; i ++)
+        for (int i = 0; i < begingItemScrObj.Length; i++)
         {
             pickedUpName = begingItemScrObj[i].itemName;
             pickedUpNameList.Add(pickedUpName);
@@ -29,14 +29,43 @@ public class InventoryManager_II : MonoBehaviour
         StartCoroutine(BegingItemScrObj());
         itemCount = pickedUpNameList.Count;
     }
+    public void ClearItems()
+    {
+        GameObject[] allChildren = new GameObject[transform.childCount];
+        int i = 0;
+        foreach (Transform child in transform)
+        {
+            allChildren[i] = child.gameObject;
+            i++;
+        }
+        foreach (GameObject child in allChildren)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
     IEnumerator BegingItemScrObj()
     {
         for (int i = 0; i < pickedUpNameList.Count; i++)
         {
             pickedUpName = pickedUpNameList[i];
+            //Color tmp = itemSlot.GetComponent<SpriteRenderer>().color;
+            //tmp.a = 0f;
+            //itemSlot.GetComponent<SpriteRenderer>().color = tmp;
             Instantiate(itemSlot, this.transform);
+
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+    public void MakeUISlotsVisable()
+    {
+        for (int i = 0; i < pickedUpNameList.Count; i++)
+        {
+            GameObject slot = gameObject.transform.GetChild(i).gameObject;
+            Debug.Log(slot.transform.name);
+            Color tmp = slot.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            itemSlot.GetComponent<SpriteRenderer>().color = tmp;
         }
     }
 

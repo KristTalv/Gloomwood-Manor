@@ -64,7 +64,14 @@ public class Puz_LetLight : MonoBehaviour
 
     private void GiveDialog()
     {
-        diaPuzzLetLight = dialogLetLight1.dialogText;
+        if (statusLight == "Violet")
+        {
+            diaPuzzLetLight = dialogLetLight1.dialogText;
+        }
+        else if (statusLight == "Green")
+        {
+            diaPuzzLetLight = dialogLetLight2.dialogText;
+        }
         dialogManager.Listener(diaPuzzLetLight);
     }
 

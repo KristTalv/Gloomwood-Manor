@@ -25,8 +25,11 @@ public class PlayerController_III : MonoBehaviour
     public CameraController cameraController; // CameraController script. Camera needs to know when player pass trhoug collision --> camMoveBool = true
     private PuzzleManager puzzleManager;
     private DialogManager dialogManager;
+    private Config config;
     //Animator and AnimationClips
     [SerializeField] private Animator animator;
+    // Sounds
+    [SerializeField] private AudioSource audioSteps;
 
     private void Start()
     {
@@ -34,6 +37,7 @@ public class PlayerController_III : MonoBehaviour
         puzzleManager = FindObjectOfType<PuzzleManager>();
         cameraController = FindObjectOfType<CameraController>();
         dialogManager = FindObjectOfType<DialogManager>();
+        config = FindObjectOfType<Config>();
 
         foreach (GameObject item in walkPathPoint) // wayPoint List is made in the loop.
         {
@@ -56,6 +60,7 @@ public class PlayerController_III : MonoBehaviour
         }
         if(isMoving == true && heroLocation == heroDestination)
         {
+            audioSteps.Stop();
             isMoving = false;
             animator.SetBool("Walking", false);
         }
@@ -72,6 +77,7 @@ public class PlayerController_III : MonoBehaviour
             {
                 isMoving = true;
                 animator.SetBool("Walking", true);
+                audioSteps.Play();
 
                 firstTime++; // Increment the action count
                 moveClick = hit.point;
@@ -92,9 +98,9 @@ public class PlayerController_III : MonoBehaviour
                             smallestResult = resutl;
                             wayPointIndex = i;
                         }
-                        if (wayPointIndex > 3 && statusLetLight == "Violet")
+                        if (wayPointIndex > config.wayPointLimit && statusLetLight == "Violet")
                         {
-                            wayPointIndex = 3;
+                            wayPointIndex = config.wayPointLimit;
                             string message = "It's too dark in there";
                             dialogManager.Listener(message);
                         }

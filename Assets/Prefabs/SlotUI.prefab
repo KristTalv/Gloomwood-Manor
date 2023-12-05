@@ -153,6 +153,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c5800d6cdbfb72469dfdd0a207a89b3, type: 2}
   - {fileID: 11400000, guid: d2be4b998b6bb5347bf49a2d802cde41, type: 2}
   - {fileID: 11400000, guid: 714932259f2cd9541b590f6cf6f71d64, type: 2}
+  sigilDialogInventory: {fileID: 11400000, guid: 8719b7d8e16f8be429efcaeda093719b, type: 2}
+  swordDialogInventory: {fileID: 11400000, guid: e1932b568a19ad848b1b844a5dbc601a, type: 2}
 --- !u!65 &-7915948933343285088
 BoxCollider:
   m_ObjectHideFlags: 0
