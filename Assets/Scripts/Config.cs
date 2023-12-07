@@ -4,7 +4,7 @@ using UnityEngine;
 public class Config : MonoBehaviour
 {
     // For QuestObject
-    public float[] yCordinateArray = {0.7f, 0.6f, 0.5f }; 
+    public float[] yCordinateArray = {0.7f, 1.5f, 1.6f }; 
     // - CameraController
     public int[] camIndexChanges = { 1, 1, -1, 1, -1 }; 
     public int[] camArray = { 0, 0, 1, 1, 2 };

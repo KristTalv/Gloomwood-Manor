@@ -14,7 +14,7 @@ public class QuestObjects : MonoBehaviour
     // GameObjects
     public GameObject dialogBox;
     // Bools
-    private bool isTalking = false;
+    private bool isClicked = false;
     private bool isInRange = false;
     // ScriptableObjects
     [Header("Start Door")]
@@ -73,9 +73,10 @@ public class QuestObjects : MonoBehaviour
             {
                 if (hit.transform.gameObject.name == gameObject.name) // if user clkicks a "quest" object, questBoolean is true
                 {
+
                     clickedObjectName = hit.transform.name;
                     clickPosVector3 = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-                    isTalking = true;
+                    isClicked = true;
                     if (isInRange == true)
                     {
                         GiveDialog();
@@ -83,15 +84,15 @@ public class QuestObjects : MonoBehaviour
                 }
                 else
                 {
-                    isTalking = false;
-                }               
+                    isClicked = false;
+                }
             }
         }
     }
     private void OnTriggerEnter(Component other)
     {
         isInRange = true;
-        if (isTalking == true)
+        if (isClicked == true)
         {
             GiveDialog(); // Takes care of dialog box and dialog options
         }
@@ -99,10 +100,8 @@ public class QuestObjects : MonoBehaviour
     private void OnTriggerExit(Collider other) // exiting makes dialog box unvisable and sets questBoolean to false --> re-enttering trigger area wont make 
                                                // dialog box visable
     {
-        dialogBox.SetActive(false);
-        isTalking = false;
+        isClicked = false;
         isInRange = false;
-        //dialogManager.ResetListener();
     }
 
     private void GiveDialog()
@@ -126,9 +125,10 @@ public class QuestObjects : MonoBehaviour
             }
         }
 
-        // Calculate correct grave
-        if (clickedObjectName == "RightSideGraves" && isTalking == true && isInRange == true)
+
+        if(clickedObjectName == "RightSideGraves" || clickedObjectName == "LeftSideGraves")
         {
+            // Calculate correct grave
             float smallestResult = float.MaxValue;
             for (int i = 0; i < yCordinateArray.Length; i++)
             {
@@ -139,35 +139,25 @@ public class QuestObjects : MonoBehaviour
                     graveIndex = i;
                 }
             }
-            message = graveRightDialogOptionList[graveIndex].dialogText;
-            dialogManager.Listener(message);
-        }
-        if (clickedObjectName == "LeftSideGraves" && isTalking == true && isInRange == true)
-        {
-            float smallestResult = float.MaxValue;
-            for (int i = 0; i < yCordinateArray.Length; i++)
+            // Right and Left side of graves
+            if (clickedObjectName == "RightSideGraves")
             {
-                float resutl = yCordinateArray[i] - clickPosVector3.y;
-                if (Mathf.Abs(resutl) < smallestResult)
-                {
-                    smallestResult = resutl;
-                    graveIndex = i;
-                }
+                message = graveRightDialogOptionList[graveIndex].dialogText;
+                dialogManager.Listener(message);
             }
-            if (graveIndex == 1 )
+            if (clickedObjectName == "LeftSideGraves")
             {
-                string status = puzzleManager.statusSigil;
-                if(status == "Yellow")
+                if (graveIndex == 1)
                 {
-                    puz_Sigil.PickUpSigil();
+                    string status = puzzleManager.statusSigil;
+                    if (status == "Yellow")
+                    {
+                        puz_Sigil.PickUpSigil();
+                    }
                 }
+                message = graveLeftDialogOptionList[graveIndex].dialogText;
+                dialogManager.Listener(message);                
             }
-            message = graveLeftDialogOptionList[graveIndex].dialogText;
-            dialogManager.Listener(message);
-        }
-        if (isTalking == true)
-        {
-            dialogBox.SetActive(true);
         }
         UpDateCaunt();
     }
