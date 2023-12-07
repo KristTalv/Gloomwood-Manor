@@ -19,6 +19,7 @@ public class ScreenManager : MonoBehaviour
     //[SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject redScreen;
+    [SerializeField] private GameObject whiteScreen;
     [SerializeField] private GameObject screenImage;
     // QuestDialogScrOj
     [SerializeField] private QuestDialogScrObj[] screenStartText;
@@ -27,6 +28,11 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] private QuestDialogScrObj[] screenVictoryText;
     // SFX
     [SerializeField] private AudioSource slashAudio;
+    [SerializeField] private AudioSource lightUpAudio;
+    [SerializeField] private AudioSource burningAudio;
+    [SerializeField] private AudioSource lockDoorAudio;
+    [SerializeField] private AudioSource victoryAmbient;
+    [SerializeField] private AudioSource defaultAmbient;
     // Scripts
     private DialogManager dialogManager;
     private InventoryManager_II inventoryManager;
@@ -82,6 +88,7 @@ public class ScreenManager : MonoBehaviour
             }
             else if (counter >= screenStartText.Length)
             {
+                lockDoorAudio.Play();
                 string message = jonathanDialogText[0].dialogText;
                 dialogManager.Listener(message);
                 jonathan.SetActive(true);
@@ -152,9 +159,19 @@ public class ScreenManager : MonoBehaviour
         Debug.Log("loppu");
 
     }
+    IEnumerator WhiteFlas()
+    {
+        defaultAmbient.Stop();
+        victoryAmbient.Play();
+        lockDoorAudio.Play();
+        whiteScreen.SetActive(true);
+        yield return new WaitForSeconds(redFlasTime);
+        whiteScreen.SetActive(false);
+    }
 
     public void StartVictory()
     {
+        StartCoroutine(WhiteFlas());
         inventoryManager.ClearItems();
         jonathan.SetActive(false);
         isScreenOnArray[2] = true;
@@ -180,5 +197,19 @@ public class ScreenManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+    public void PlayLightUp()
+    {
+        lightUpAudio.Play();
+        burningAudio.Play();
+    }
+    public void StopBurningAudio()
+    {
+        burningAudio.Stop();
+    }
+    public void TurnPitchAmbient()
+    {
+        defaultAmbient = defaultAmbient.GetComponent<AudioSource>();
+        defaultAmbient.pitch = 1;
     }
 }

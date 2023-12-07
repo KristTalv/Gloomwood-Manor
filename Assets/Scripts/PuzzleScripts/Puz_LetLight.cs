@@ -21,6 +21,7 @@ public class Puz_LetLight : MonoBehaviour
     private DialogManager dialogManager;
     private PuzzleManager puzzleManager;
     private MouseController mouseController;
+    private ScreenManager screenManager;
 
 
     void Start()
@@ -28,6 +29,7 @@ public class Puz_LetLight : MonoBehaviour
         dialogManager = FindObjectOfType<DialogManager>();
         puzzleManager = FindObjectOfType<PuzzleManager>();
         mouseController = FindObjectOfType<MouseController>();
+        screenManager = FindObjectOfType<ScreenManager>();
         statusLight = "Violet";
     }
 
@@ -77,6 +79,7 @@ public class Puz_LetLight : MonoBehaviour
 
     private void DoLightPuzzle()
     {
+        screenManager.PlayLightUp();
         statusLight = "Green";
         puzzleManager.statusLetLight = statusLight;
         diaPuzzLetLight = dialogLetLight2.dialogText;

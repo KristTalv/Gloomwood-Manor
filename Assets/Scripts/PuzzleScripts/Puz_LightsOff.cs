@@ -18,14 +18,13 @@ public class Puz_LightsOff : MonoBehaviour
     // Bool
     private bool isClicked = false;
     private bool isExitDoorRange = false;
+    private bool isStatueRange = false;
     private bool isTimeOut = false;
     private bool isGameWon = false;
     // Game Object
     [SerializeField] private GameObject sceneLight;
     [SerializeField] private GameObject startLight;
     [SerializeField] private GameObject sceneLightEnding;
-    [SerializeField] private GameObject endScreen;
-    [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject statueSwordObject;
     // Scriptable Objects
     [SerializeField] private QuestDialogScrObj dialog1;
@@ -37,6 +36,7 @@ public class Puz_LightsOff : MonoBehaviour
     private MouseController mouseController;
     private InventoryManager_II inventoryManagerII;
     private Puz_LetLight puz_LetLight;
+    private ScreenManager screenManager;
 
     void Start()
     {
@@ -48,6 +48,7 @@ public class Puz_LightsOff : MonoBehaviour
         mouseController = FindObjectOfType<MouseController>();
         inventoryManagerII = FindObjectOfType<InventoryManager_II>();
         puz_LetLight = FindObjectOfType<Puz_LetLight>();
+        screenManager = FindObjectOfType<ScreenManager>();
 
         puzzleManager.statusLightsOff = statusLightsOff;
     }
@@ -70,22 +71,35 @@ public class Puz_LightsOff : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
-            {
+            { 
                 if (hit.transform.name == "Door_Goal")
                 {
                     cursorName = mouseController.mouseScriptCursorName;
                     isExitDoorRange = goalDoor.isInRangeDoor;
                     isClicked = true;
                 }
-                if(hit.transform.name == "Q_LightsOff")
+                else if (hit.transform.name == "Q_LightsOff" && isStatueRange == true)
+                {
+
+                    isClicked = true;
+                    message = dialog1.dialogText;
+                    dialogManager.Listener(message);
+                }
+                else if (hit.transform.name == "Q_LightsOff")
                 {
                     cursorName = mouseController.mouseScriptCursorName;
                     isClicked = true;
                 }
+                else
+                {
+                    isClicked = false;
+                }
+
             }
         }
         if(isExitDoorRange == true && isClicked == true)
@@ -110,7 +124,9 @@ public class Puz_LightsOff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isClicked == true )
+
+        isStatueRange = true;
+        if (isClicked == true && isStatueRange)
         {
             message = dialog1.dialogText;
             dialogManager.Listener(message);
@@ -123,6 +139,8 @@ public class Puz_LightsOff : MonoBehaviour
 
                 StartCounter();
 
+                screenManager.TurnPitchAmbient();
+                screenManager.StopBurningAudio();
                 statueSwordObject.SetActive(true);
                 puz_LetLight.LightSwitch(false);
                 sceneLight.SetActive(false);
@@ -132,6 +150,14 @@ public class Puz_LightsOff : MonoBehaviour
                 dialogManager.Listener(message);
             }
         }
+        else if (isClicked == true)
+        {
+            Debug.Log("tataa");
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isStatueRange = false;   
     }
     public bool GiveRangeBool(bool isInRange)
     {

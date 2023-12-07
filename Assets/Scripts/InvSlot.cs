@@ -61,7 +61,6 @@ public class InvSlot : MonoBehaviour
                 {
                     if (hit.transform.GetComponent<InvSlot>().slotItemName == this.slotItemName)
                     {
-                        Debug.Log(this.slotItemName);
                         string message = "";
                         if (this.slotItemName == "Sigil")
                         {

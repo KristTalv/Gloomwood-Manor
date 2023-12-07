@@ -18,6 +18,8 @@ public class InventoryManager_II : MonoBehaviour
     [SerializeField] private GameObject dialogBox;
     // Lists
     List<string> pickedUpNameList = new List<string>(); // List of picked up items
+    // SFX
+    [SerializeField] private AudioSource audioPickUP;
 
     public void GiveStartItems()
     {
@@ -49,9 +51,6 @@ public class InventoryManager_II : MonoBehaviour
         for (int i = 0; i < pickedUpNameList.Count; i++)
         {
             pickedUpName = pickedUpNameList[i];
-            //Color tmp = itemSlot.GetComponent<SpriteRenderer>().color;
-            //tmp.a = 0f;
-            //itemSlot.GetComponent<SpriteRenderer>().color = tmp;
             Instantiate(itemSlot, this.transform);
 
             yield return new WaitForSeconds(0.01f);
@@ -117,12 +116,14 @@ public class InventoryManager_II : MonoBehaviour
 
     private void MakeInvtSlot(string itemName) // Creates the inventory slot for the picked up item
     {
+        audioPickUP.Play();
         Instantiate(itemSlot, this.transform);
         canPutInBool = false;
     }
 
     public void UseItem(string item) 
     {
+        audioPickUP.Play();
         for (int i = 0; i < pickedUpNameList.Count; i++)
         {
             if (item == pickedUpNameList[i])

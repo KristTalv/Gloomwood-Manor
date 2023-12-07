@@ -91,7 +91,10 @@ public class QuestObjects : MonoBehaviour
     private void OnTriggerEnter(Component other)
     {
         isInRange = true;
-        GiveDialog(); // Takes care of dialog box and dialog options
+        if (isTalking == true)
+        {
+            GiveDialog(); // Takes care of dialog box and dialog options
+        }
     }
     private void OnTriggerExit(Collider other) // exiting makes dialog box unvisable and sets questBoolean to false --> re-enttering trigger area wont make 
                                                // dialog box visable
@@ -99,19 +102,31 @@ public class QuestObjects : MonoBehaviour
         dialogBox.SetActive(false);
         isTalking = false;
         isInRange = false;
+        //dialogManager.ResetListener();
     }
 
     private void GiveDialog()
     {
         string message;
-        for (int i = 0; i < doorDialogOption.Length; i++)
+        if (clickedObjectName == "Door_Start")
         {
-            if(i == cauntStartDoor)
+            for (int i = 0; i < doorDialogOption.Length; i++)
             {
-                message = doorDialogOption[i].dialogText;
-                dialogManager.Listener(message);
+                if (i == cauntStartDoor)
+                {
+                    message = doorDialogOption[i].dialogText;
+                    dialogManager.Listener(message);
+
+                }
+                else if (cauntStartDoor >= 2)
+                {
+                    message = doorDialogOption[2].dialogText;
+                    dialogManager.Listener(message);
+                }
             }
         }
+
+        // Calculate correct grave
         if (clickedObjectName == "RightSideGraves" && isTalking == true && isInRange == true)
         {
             float smallestResult = float.MaxValue;

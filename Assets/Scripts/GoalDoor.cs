@@ -34,14 +34,15 @@ public class GoalDoor : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.transform.name == gameObject.transform.name)
-                {
-                    isClicked = true;
-                }
+
                 if(hit.transform.name == gameObject.transform.name && isInRangeDoor == true)
                 {
                     isClicked = true;
                     GiveDialogExit();
+                }
+                else if (hit.transform.name == gameObject.transform.name)
+                {
+                    isClicked = true;
                 }
                 else
                 {
@@ -73,12 +74,12 @@ public class GoalDoor : MonoBehaviour
             message = dialogOption1.dialogText;
             dialogManager.Listener(message);
         }
-        if (counter == 1)
+        else if (counter == 1)
         {
             message = dialogOption2.dialogText;
             dialogManager.Listener(message);
         }
-        if (counter >= 2)
+        else if (counter >= 2)
         {
             message = dialogOption3.dialogText;
             dialogManager.Listener(message);

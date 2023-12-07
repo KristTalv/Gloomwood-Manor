@@ -16,4 +16,8 @@ public class DialogManager : MonoBehaviour
     {
         dialogBox.SetActive(false);
     }
+    public void ResetListener()
+    {
+        dialogBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+    }
 }
