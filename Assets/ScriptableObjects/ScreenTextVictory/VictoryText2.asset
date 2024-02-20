@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc633dd97bde53499445865f7fb96c8, type: 3}
+  m_Name: VictoryText2
+  m_EditorClassIdentifier: 
+  dialogName: Outro2
+  dialogText: Nefariously red dawn was greeting him when Jonathan made his way back
+    to Gloomwood Manor heart heavy and filled with doubt.
